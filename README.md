@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="pics/banner.png" alt="DBMS Digest — a weekly roundup for internals developers & database administrators" width="100%">
+<img src="pics/banner.jpg" alt="DBMS Digest — a weekly roundup for internals developers & database administrators" width="100%">
 
 # DBMS Digest
 
