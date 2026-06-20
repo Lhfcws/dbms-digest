@@ -29,9 +29,13 @@ Whenever you open this project (in Cowork or Claude Code), run the following rou
 5. **Keep sources fresh.** The skill may append new sources to
    `.claude/skills/weekly-dbms-digest/references/sources.md`. Include those edits in the commit.
 
-6. **Commit.** Stage the new digest files, the README change, and any sources update, and
-   commit with a message like `digest: add weeks YYYY-MM-DD … (auto)`. One commit per run is
-   fine. Do not push unless asked.
+6. **Rebuild the RSS feed.** Whenever any digest was added or changed, run
+   `python3 scripts/build_feed.py` to regenerate `docs/feed.xml` and `docs/index.html` from the
+   digests. The feed is what people read on their phones; keep it in sync.
+
+7. **Commit.** Stage the new digest files, the README change, any sources update, and the
+   regenerated `docs/` files, and commit with a message like
+   `digest: add weeks YYYY-MM-DD … (auto)`. One commit per run is fine. Do not push unless asked.
 
 If there are no gaps, say so and make no commit.
 
@@ -41,3 +45,5 @@ If there are no gaps, say so and make no commit.
 - A digest's window is that Monday 00:00 through the following Sunday 23:59.
 - Keep digests terse and ad-free, exactly as the skill specifies. Quality over padding —
   a short honest week beats filler.
+- The published feed lives at `docs/feed.xml` (RSS) with a landing page at `docs/index.html`,
+  served by GitHub Pages from `main` → `/docs`. The generator is `scripts/build_feed.py`.
