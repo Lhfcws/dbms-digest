@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of PostgreSQL &amp; wider DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jun 2026 17:09:44 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 17:17:16 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)</title>
@@ -65,8 +65,19 @@
 <li><strong><a href="https://www.cidrdb.org/cidr2027/cfp.html">CIDR 2027 — Amsterdam, Jan 24–27, 2027</a></strong> — CFP open; deadline on the page. <em>(research)</em></li>
 </ul>
 <p><em>(PGConf.EU 2026's CFP closed Jun 1, so it's excluded — the section lists only still-open calls.)</em></p>
+<h2>Upcoming events</h2>
+<p><em>Next ~4–6 weeks. Talk picks flagged for an internals developer — ideas worth probing for our own products.</em></p>
+<ul>
+<li><strong><a href="https://2026.pgday.ch/schedule/">Swiss PGDay 2026 — Rapperswil, CH, Jun 25–26</a></strong> — the Swiss PostgreSQL conference, two tracks (EN/DE). Internals picks:<ul>
+<li><strong>Deep dive into the PostgreSQL Front/Backend protocol</strong> (Xavier Fischer, EDB) — the wire protocol every pooler, proxy, and distributed router must speak; directly useful for anything that intercepts or multiplexes client↔server traffic.</li>
+<li><strong>Optimizer Hints in PostgreSQL</strong> (Michael Banck, credativ) — timely against PG19's new <code>pg_plan_advice</code>; where hint-style plan control is heading and how to expose it.</li>
+<li><strong>Zooming in on OOM: a deep dive into Postgres and Linux memory</strong> (Oleksii Kliukin &amp; Dimitris Sideris, Tiger Data) — how backends interact with the Linux OOM killer; relevant to memory accounting and stability under load.</li>
+</ul>
+</li>
+</ul>
+<p><em>July itself is quiet for relational-DB conferences (only a Postgres meetup in Istanbul on Jul 2, programme TBA); the next program-rich events are PGDay UK (Sep 8) and PGConf.EU (Valencia, Oct 20–23).</em></p>
 <hr />
-<p><em>23 items · sources scanned: ~30 · community threads scanned: HN (40 DB stories) · international: 2 (ru) · CFPs open: 4 · filtered out as marketing/ads: 8</em></p>]]></content:encoded>
+<p><em>23 items · sources scanned: ~30 · community threads scanned: HN (40 DB stories) · international: 2 (ru) · CFPs open: 4 · upcoming events: 1 · filtered out as marketing/ads: 8</em></p>]]></content:encoded>
     </item>
     <item>
       <title>DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)</title>
