@@ -5,11 +5,11 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of PostgreSQL &amp; wider DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jun 2026 16:43:26 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 17:04:48 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)</title>
-      <link>https://github.com/danolivo/dbms-digest/blob/main/digests/2026-06-08.md</link>
+      <link>https://danolivo.github.io/dbms-digest/digests/2026-06-08.html</link>
       <guid isPermaLink="false">dbms-digest-2026-06-08</guid>
       <pubDate>Mon, 08 Jun 2026 12:00:00 +0000</pubDate>
       <content:encoded><![CDATA[<h2>PostgreSQL</h2>
@@ -68,7 +68,7 @@
     </item>
     <item>
       <title>DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)</title>
-      <link>https://github.com/danolivo/dbms-digest/blob/main/digests/2026-06-01.md</link>
+      <link>https://danolivo.github.io/dbms-digest/digests/2026-06-01.html</link>
       <guid isPermaLink="false">dbms-digest-2026-06-01</guid>
       <pubDate>Mon, 01 Jun 2026 12:00:00 +0000</pubDate>
       <content:encoded><![CDATA[<h2>PostgreSQL</h2>
@@ -105,7 +105,7 @@
     </item>
     <item>
       <title>DBMS Weekly — 2026-05-31 (week of 2026-05-25–2026-05-31)</title>
-      <link>https://github.com/danolivo/dbms-digest/blob/main/digests/2026-05-25.md</link>
+      <link>https://danolivo.github.io/dbms-digest/digests/2026-05-25.html</link>
       <guid isPermaLink="false">dbms-digest-2026-05-25</guid>
       <pubDate>Mon, 25 May 2026 12:00:00 +0000</pubDate>
       <content:encoded><![CDATA[<h2>PostgreSQL</h2>
@@ -147,7 +147,7 @@
     </item>
     <item>
       <title>DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24)</title>
-      <link>https://github.com/danolivo/dbms-digest/blob/main/digests/2026-05-18.md</link>
+      <link>https://danolivo.github.io/dbms-digest/digests/2026-05-18.html</link>
       <guid isPermaLink="false">dbms-digest-2026-05-18</guid>
       <pubDate>Mon, 18 May 2026 12:00:00 +0000</pubDate>
       <content:encoded><![CDATA[<h2>PostgreSQL</h2>

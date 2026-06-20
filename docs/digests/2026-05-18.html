@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24) · DBMS Digest</title>
+  <link rel="alternate" type="application/rss+xml" title="DBMS Digest" href="../feed.xml">
+  <style>
+    :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--navy); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:var(--blue); }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 20px 64px; }
+    .banner img { width:100%; height:auto; border-radius:12px; display:block; }
+    .sublabel { font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin:28px 0 4px; }
+    p.lead { color:var(--ink); margin:0 0 20px; }
+    .sub { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--navy);
+      font-weight:700; text-decoration:none; padding:11px 18px; border-radius:999px; }
+    .sub:active { opacity:.85; }
+    .feedurl { display:block; margin:14px 0 0; color:var(--mut); font-size:.85rem; word-break:break-all; }
+    .feedurl code { color:var(--blue); }
+    .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
+      border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
+    ul.index { list-style:none; padding:0; margin:0; }
+    ul.index li { border-bottom:1px solid var(--navy2); }
+    ul.index li a { display:flex; gap:12px; align-items:baseline; padding:13px 4px; text-decoration:none; color:var(--ink); }
+    ul.index li a:hover { color:var(--amber); }
+    .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
+    .week { color:var(--mut); }
+    .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
+    .backlink:hover { color:var(--amber); }
+    footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
+    footer a { color:var(--blue); }
+    /* rendered digest prose */
+    .prose h1 { font-size:1.5rem; line-height:1.25; margin:8px 0 18px; color:var(--ink); }
+    .prose h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+      border-top:1px solid var(--navy2); padding-top:22px; margin:34px 0 12px; }
+    .prose p { margin:.5em 0 1em; }
+    .prose ul { padding-left:1.2em; margin:.4em 0 1.2em; }
+    .prose li { margin:.5em 0; }
+    .prose li::marker { color:var(--mut); }
+    .prose a { text-decoration:none; border-bottom:1px solid transparent; }
+    .prose a:hover { color:var(--amber); border-bottom-color:var(--amber); }
+    .prose strong { color:var(--ink); }
+    .prose em { color:var(--mut); }
+    .prose code { background:var(--navy2); color:#cfe0f5; padding:1px 5px; border-radius:4px; font-size:.92em; }
+    .prose hr { border:0; border-top:1px solid var(--navy2); margin:28px 0; }
+    .prose blockquote { margin:1em 0; padding:.4em 1em; border-left:3px solid var(--amber); color:var(--mut); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="backlink" href="../index.html">← All digests</a>
+    <article class="prose">
+<h1>DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24)</h1>
+<h2>PostgreSQL</h2>
+<ul>
+<li><strong><a href="https://thebuild.com/blog/2026/05/18/postgresql-19-beta-the-four-features-youll-actually-feel/">The four PG19 features you'll actually feel in production</a></strong> — Christophe Pettus skips the SQL/PGQ graph headline and flags the operational changes: 64-bit MultiXact members (kills the "vacuum-or-die" member-exhaustion failure mode), parallel autovacuum index workers (watch the <code>max_workers × max_parallel × maintenance_work_mem</code> worst case), temporal <code>UPDATE/DELETE ... FOR PORTION OF</code>, and <code>jit = off</code> by default (OLAP shops should re-enable and benchmark before upgrading). <em>(thebuild.com)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/pg_sorted_heap-0140-released-3300/">pg_sorted_heap 0.14.0</a></strong> — physically-sorted heap storage with zone-map pruning and a planner-integrated vector-search path. <em>(postgresql.org)</em><ul>
+<li><code>sorted_hnsw</code> made planner-visible via the Index AM path for covered KNN, including parent Merge Append over leaf HNSW indexes</li>
+<li>composite zone-map metadata (first-key block ranges + bounded second-key summary); <code>sorted_heap_bulk_load_ordered(...)</code> trusted ordered ingestion</li>
+<li>verified on PostgreSQL 16, 17, 18; now on PGXN</li>
+</ul>
+</li>
+<li><strong><a href="https://www.postgresql.org/about/news/pg_tre-111-released-an-approximate-regex-index-am-for-postgresql-18-3305/">pg_tre 1.1.1 — approximate-regex index access method</a></strong> — a real <code>IndexAmRoutine</code> (USING tre) doing Levenshtein-distance regex matching ("within k edits of this pattern"), with WAL coverage, VACUUM awareness, and REINDEX CONCURRENTLY; three-tier filter funnel (BRIN-style range bloom → trigram postings → per-tuple bloom) over Laurikari's TRE library. Fills a gap pg_trgm/FTS/pgvector don't cover. PostgreSQL 18+. <em>(postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/pg_mentat-130-released-datomic-compatible-datalog-inside-postgresql-3306/">pg_mentat 1.3.0 — Datomic-compatible Datalog inside Postgres</a></strong> — immutable datoms, a Datalog compiler that lowers to ordinary SQL, the pull API, time-travel (as-of/since/history), and ACID via PG transactions; built with pgrx in Rust for PG13–18, with soft integrations into pg_trgm/fuzzystrmatch/pgvector/PostGIS/etc. <em>(postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/plpgsql_wrap-v10-released-3299/">plpgsql_wrap v1.0 — Oracle-style PL/pgSQL obfuscation</a></strong> — stored procedures written <code>LANGUAGE plpgsql_wrap</code> are AES-256-GCM-encrypted into <code>pg_proc.prosrc</code>; source is unreadable (including in <code>pg_dump</code>, whose output stays restorable) without the key, otherwise behaves identically to plpgsql. PostgreSQL 12+. <em>(postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/pg_statviz-10-released-with-ai-powered-analysis-3301/">pg_statviz 1.0</a></strong> — minimalist in-database stats time-series extension, now with an opt-in <code>--ai</code> analysis flag. <em>(postgresql.org)</em><ul>
+<li><code>--ai</code> sends each chart's data/PNG to a vision LLM (Claude/Gemini/local Ollama) for a HEALTHY/WARNING/CRITICAL verdict plus remediation</li>
+<li>notable design discipline: a deterministic rules engine runs first and a "severity floor" prevents the LLM downgrading a real finding; prompts wrap user data in <code>&lt;user_data&gt;</code> envelopes for prompt-injection containment and explicitly debunk shared_buffers/random_page_cost folklore</li>
+<li>AI is fully optional; with no <code>--ai</code> flag there are zero extra dependencies and no external calls</li>
+</ul>
+</li>
+<li><strong><a href="https://www.postgresql.org/about/news/release-check_pgactivity-210-3302/">check_pgactivity 2.10</a></strong> — new release of the Nagios/monitoring plugin for PostgreSQL. <em>(postgresql.org)</em></li>
+</ul>
+<h2>Migration experience</h2>
+<ul>
+<li><strong><a href="https://runharbor.com/blog/2026-05-18-building-automatic-contextual-clinical-trial-audit-logging-in-postgres-without-triggers">21 CFR Part 11 audit logging in Postgres without triggers</a></strong> — Nathan Leung walks through why Harbor rejected pgAudit (no app context) and PL/pgSQL triggers (<code>SET LOCAL</code> plumbing, per-study-DB duplication, PgBouncer transaction-pooling wariness) and instead wrapped their Drizzle ORM in a JS <code>Proxy</code> that forces <code>.withAuditLogCtx(...)</code> before any mutation, writing the data change and a signed before/after audit row in one transaction (<code>SELECT ... FOR UPDATE</code> for a consistent snapshot). Honest trade-offs section: extra round trips, weaker guarantee than a DB-level trigger, and a note on eventually moving signing into pgcrypto. <em>(Nathan Leung · runharbor.com)</em></li>
+</ul>
+<hr />
+<p><em>8 items · sources scanned: ~25 · filtered out as marketing/ads: ~9</em></p>
+    </article>
+    <footer>
+      <a href="../index.html">← All digests</a> ·
+      <a href="../feed.xml">RSS feed</a> ·
+      <a href="https://github.com/danolivo/dbms-digest/blob/main/digests/2026-05-18.md">View source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

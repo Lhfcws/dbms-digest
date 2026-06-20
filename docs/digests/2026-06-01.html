@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07) · DBMS Digest</title>
+  <link rel="alternate" type="application/rss+xml" title="DBMS Digest" href="../feed.xml">
+  <style>
+    :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--navy); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:var(--blue); }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 20px 64px; }
+    .banner img { width:100%; height:auto; border-radius:12px; display:block; }
+    .sublabel { font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin:28px 0 4px; }
+    p.lead { color:var(--ink); margin:0 0 20px; }
+    .sub { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--navy);
+      font-weight:700; text-decoration:none; padding:11px 18px; border-radius:999px; }
+    .sub:active { opacity:.85; }
+    .feedurl { display:block; margin:14px 0 0; color:var(--mut); font-size:.85rem; word-break:break-all; }
+    .feedurl code { color:var(--blue); }
+    .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
+      border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
+    ul.index { list-style:none; padding:0; margin:0; }
+    ul.index li { border-bottom:1px solid var(--navy2); }
+    ul.index li a { display:flex; gap:12px; align-items:baseline; padding:13px 4px; text-decoration:none; color:var(--ink); }
+    ul.index li a:hover { color:var(--amber); }
+    .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
+    .week { color:var(--mut); }
+    .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
+    .backlink:hover { color:var(--amber); }
+    footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
+    footer a { color:var(--blue); }
+    /* rendered digest prose */
+    .prose h1 { font-size:1.5rem; line-height:1.25; margin:8px 0 18px; color:var(--ink); }
+    .prose h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+      border-top:1px solid var(--navy2); padding-top:22px; margin:34px 0 12px; }
+    .prose p { margin:.5em 0 1em; }
+    .prose ul { padding-left:1.2em; margin:.4em 0 1.2em; }
+    .prose li { margin:.5em 0; }
+    .prose li::marker { color:var(--mut); }
+    .prose a { text-decoration:none; border-bottom:1px solid transparent; }
+    .prose a:hover { color:var(--amber); border-bottom-color:var(--amber); }
+    .prose strong { color:var(--ink); }
+    .prose em { color:var(--mut); }
+    .prose code { background:var(--navy2); color:#cfe0f5; padding:1px 5px; border-radius:4px; font-size:.92em; }
+    .prose hr { border:0; border-top:1px solid var(--navy2); margin:28px 0; }
+    .prose blockquote { margin:1em 0; padding:.4em 1em; border-left:3px solid var(--amber); color:var(--mut); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="backlink" href="../index.html">← All digests</a>
+    <article class="prose">
+<h1>DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)</h1>
+<h2>PostgreSQL</h2>
+<ul>
+<li><strong><a href="https://www.postgresql.org/about/news/postgresql-19-beta-1-released-3313/">PostgreSQL 19 Beta 1 released</a></strong> — first beta of PG19 lands with a big feature set: in-core <code>REPACK [CONCURRENTLY]</code>, the <code>pg_plan_advice</code>/<code>pg_stash_advice</code> planner-stabilization extensions ("plan advice", not "hints"), parallel autovacuum, online enable/disable of data checksums and logical replication without restart (<code>effective_wal_level</code>), SQL/PGQ property-graph queries, <code>WAIT FOR LSN</code>, <code>INSERT ... ON CONFLICT DO SELECT</code>, eager aggregation, JIT now off by default, and <code>default_toast_compression=lz4</code>. <em>(postgresql.org)</em></li>
+<li><strong><a href="https://www.pgedge.com/blog/looking-forward-to-postgres-19-query-hints">Postgres 19 gets "plan advice" (query hints, sort of)</a></strong> — a walk through the new <code>pg_plan_advice</code> / <code>pg_stash_advice</code> contrib modules that let you capture and reapply planner decisions by query id, ending the project's long-standing "no hints" posture. <em>(Shaun Thomas · pgEdge)</em></li>
+<li><strong><a href="https://www.cybertec-postgresql.com/en/handling-graphs-with-sql-pgq-in-postgresql/">Your first graph query in PostgreSQL 19 (SQL/PGQ)</a></strong> — opens a series on the ISO SQL/PGQ syntax (<code>CREATE PROPERTY GRAPH</code>, <code>GRAPH_TABLE</code>) shipping in PG19, with worked examples over ordinary relational tables. <em>(Hans-Jürgen Schönig · Cybertec)</em></li>
+<li><strong><a href="https://www.cybertec-postgresql.com/en/when-is-a-function-leakproof/">When is a function leakproof?</a></strong> — Laurenz Albe digs into what <code>LEAKPROOF</code> really means for row-level security and security-barrier views, why it matters for RLS performance, and where the current definition is arguably too strict; framed as a request for comments. <em>(Cybertec)</em> <code>[by committer]</code></li>
+<li><strong><a href="https://boringsql.com/posts/pg-stat-statements/">pg_stat_statements: what it tells you, and what it can't</a></strong> — Radim Marek's two-part deep dive on why the same query splinters into many rows, how the fixed-size hash table evicts your tail under load, and why it counts rather than records — i.e. why it is not the query store you might want. <em>(boringsql.com)</em></li>
+<li><strong><a href="https://thebuild.com/blog/how-the-other-half-counts/">How the other half counts</a></strong> — Christophe Pettus contrasts how Postgres gathers planner statistics with the approaches taken by Oracle, Db2, MySQL, SQLite, DuckDB, and Snowflake. <em>(thebuild.com)</em></li>
+<li><strong><a href="https://thebuild.com/blog/all-your-gucs-in-a-row-datachecksums/">data_checksums: a thirteen-year history still being written</a></strong> — uses the read-only <code>data_checksums</code> GUC as a hook into the long saga of page checksums, now finally toggleable online in PG19. <em>(Christophe Pettus · thebuild.com)</em></li>
+<li><strong><a href="https://thebuild.com/blog/managed-postgres-examined-azure-database-for-postgresql-flexible-server/">Managed Postgres, examined: Azure Flexible Server</a></strong> — Azure's managed Postgres puts the standby in the commit path, so every write waits on synchronous replication to a second server — a real durability/latency trade-off competitors don't all make. <em>(Christophe Pettus · thebuild.com)</em></li>
+<li><strong><a href="https://mydbanotebook.org/posts/a-reviewer-was-born/">A reviewer was born</a></strong> — Lætitia Avrot on the chronic shortage of patch reviewers: a clean, well-motivated io_uring fd-leak fix sat in the commitfest two months with zero reviewers, which is the norm, not the exception. <em>(mydbanotebook.org)</em></li>
+<li><strong><a href="https://pgstef.github.io/2026/06/04/pgbackrest_and_pg_tde.html">Does pgBackRest work with pg_tde?</a></strong> — Stefan Fercot tests Percona's Transparent Data Encryption extension against pgBackRest and finds pgBackRest handles encrypted WAL segments transparently, contradicting an earlier claim that async archiving isn't supported. <em>(pgstef.github.io)</em></li>
+<li><strong><a href="https://pgsql-tweaks.org/blog/pgsql_tweaks-v1-0-3-released.html">pgsql_tweaks 1.0.3 released</a></strong> — Stefanie Janine Stölting's function/view bundle gets a maintenance release. <em>(pgsql-tweaks.org)</em><ul>
+<li>tested against PostgreSQL 19 Beta 1</li>
+<li>drops PostgreSQL 13 (EOL November 2025) from supported versions</li>
+<li><code>get_markdown_doku_by_schema</code> now uses COALESCE to avoid returning NULL on a NULL schema description</li>
+</ul>
+</li>
+</ul>
+<h2>Migration experience</h2>
+<ul>
+<li><strong><a href="https://stormatics.tech/blogs/the-night-our-tables-wouldnt-stop-growing">The night our tables wouldn't stop growing</a></strong> — a logical-replication migration where a 1-minute <code>statement_timeout</code> on the publisher kept killing the initial COPY; each restart left dead tuples behind, ballooning 50–90 GB source tables to 400+ GB on the subscriber overnight. Fix: <code>ALTER ROLE replication_user SET statement_timeout = 0</code>. <em>(Semab Tariq · Stormatics)</em></li>
+<li><strong><a href="https://stormatics.tech/blogs/file-descriptors-the-os-limit-that-takes-down-postgresql">File descriptors: the OS limit that takes down PostgreSQL</a></strong> — how <code>fs.file-max</code> and per-process <code>RLIMIT_NOFILE</code> exhaustion under high connection counts surfaces as a "database problem" that's really one layer down in the kernel, with the log sequence to recognize it. <em>(Warda Bibi · Stormatics)</em></li>
+</ul>
+<h2>Research &amp; cutting edge</h2>
+<ul>
+<li><strong><a href="https://arxiv.org/abs/2606.04303">GraftDB: dynamic folding of concurrent analytical queries</a></strong> — a multi-query execution engine that "grafts" a later-arriving query into a running one via shared operator state and per-query state lenses; TPC-H-derived workloads show up to 2.17x throughput and P95 latency as low as 0.17x an isolated-execution baseline. <em>(arXiv)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.02784">LAANN: I/O-aware look-ahead search for disk-based ANN</a></strong> — a look-ahead search strategy for disk-resident approximate-nearest-neighbor indexes that overlaps and reorders I/O to cut latency on billion-scale vector search. <em>(arXiv)</em> <em>[paper]</em></li>
+</ul>
+<hr />
+<p><em>15 items · sources scanned: ~30 · filtered out as marketing/ads: ~12</em></p>
+    </article>
+    <footer>
+      <a href="../index.html">← All digests</a> ·
+      <a href="../feed.xml">RSS feed</a> ·
+      <a href="https://github.com/danolivo/dbms-digest/blob/main/digests/2026-06-01.md">View source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBMS Weekly — 2026-05-31 (week of 2026-05-25–2026-05-31) · DBMS Digest</title>
+  <link rel="alternate" type="application/rss+xml" title="DBMS Digest" href="../feed.xml">
+  <style>
+    :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--navy); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:var(--blue); }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 20px 64px; }
+    .banner img { width:100%; height:auto; border-radius:12px; display:block; }
+    .sublabel { font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin:28px 0 4px; }
+    p.lead { color:var(--ink); margin:0 0 20px; }
+    .sub { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--navy);
+      font-weight:700; text-decoration:none; padding:11px 18px; border-radius:999px; }
+    .sub:active { opacity:.85; }
+    .feedurl { display:block; margin:14px 0 0; color:var(--mut); font-size:.85rem; word-break:break-all; }
+    .feedurl code { color:var(--blue); }
+    .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
+      border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
+    ul.index { list-style:none; padding:0; margin:0; }
+    ul.index li { border-bottom:1px solid var(--navy2); }
+    ul.index li a { display:flex; gap:12px; align-items:baseline; padding:13px 4px; text-decoration:none; color:var(--ink); }
+    ul.index li a:hover { color:var(--amber); }
+    .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
+    .week { color:var(--mut); }
+    .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
+    .backlink:hover { color:var(--amber); }
+    footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
+    footer a { color:var(--blue); }
+    /* rendered digest prose */
+    .prose h1 { font-size:1.5rem; line-height:1.25; margin:8px 0 18px; color:var(--ink); }
+    .prose h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+      border-top:1px solid var(--navy2); padding-top:22px; margin:34px 0 12px; }
+    .prose p { margin:.5em 0 1em; }
+    .prose ul { padding-left:1.2em; margin:.4em 0 1.2em; }
+    .prose li { margin:.5em 0; }
+    .prose li::marker { color:var(--mut); }
+    .prose a { text-decoration:none; border-bottom:1px solid transparent; }
+    .prose a:hover { color:var(--amber); border-bottom-color:var(--amber); }
+    .prose strong { color:var(--ink); }
+    .prose em { color:var(--mut); }
+    .prose code { background:var(--navy2); color:#cfe0f5; padding:1px 5px; border-radius:4px; font-size:.92em; }
+    .prose hr { border:0; border-top:1px solid var(--navy2); margin:28px 0; }
+    .prose blockquote { margin:1em 0; padding:.4em 1em; border-left:3px solid var(--amber); color:var(--mut); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="backlink" href="../index.html">← All digests</a>
+    <article class="prose">
+<h1>DBMS Weekly — 2026-05-31 (week of 2026-05-25–2026-05-31)</h1>
+<h2>PostgreSQL</h2>
+<ul>
+<li><strong><a href="https://event-driven.io/en/how-soon-is-now-in-postgresql/">How soon is <code>now()</code>? A frozen-timestamp retry-loop bug</a></strong> — Oskar Dudycz walks through a real distributed-locking bug: <code>now()</code> returns the <em>transaction</em> start time, so a retry loop sharing one transaction kept re-evaluating <code>last_updated &lt; now() - timeout</code> against a constant and never made progress; fix is <code>clock_timestamp()</code>. Includes the testing-seam lesson on why unit + e2e tests both missed it. <em>(event-driven.io)</em></li>
+<li><strong><a href="https://dev.to/shinyakato_/5-postgresql-locking-behaviors-that-trip-people-up-4k7n">5 PostgreSQL locking behaviours that trip people up</a></strong> — Shinya Kato (PostgreSQL engineer, NTT) on counterintuitive production-outage locks: FIFO lock-queue chained blocking behind a waiting <code>ACCESS EXCLUSIVE</code>, invisible FK <code>FOR KEY SHARE</code> deadlocks, unique-check INSERT deadlocks, the wraparound-prevention autovacuum that won't be cancelled, and VACUUM's hidden truncate-phase <code>ACCESS EXCLUSIVE</code> (and how it forcibly cancels standby SELECTs). <em>(dev.to)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/postgresql-anonymizer-31-introducing-local-differential-privacy-3311/">PostgreSQL Anonymizer 3.1 — Local Differential Privacy + critical CVE</a></strong> — Dalibo adds a formally-bounded LDP masking mechanism (Generalized Randomized Response, epsilon-tunable) for survey/categorical data, and fixes CVE-2026-9617, a privilege-escalation-to-superuser flaw (high risk on PG 14 and clusters upgraded from ≤14). Upgrade urged; SQL workaround posted. <em>(Dalibo · postgresql.org)</em></li>
+</ul>
+<h2>PostgreSQL conferences (PGConf.dev 2026 trip reports)</h2>
+<ul>
+<li><strong><a href="https://ardentperf.com/2026/05/26/pgconf-dev-2026-trip-summary/">PGConf.dev 2026: HA cluster-topology, wait-events, collation</a></strong> — Jeremy Schneider's trip summary surfaces real design directions discussed in Vancouver: Postgres lacks a first-class "cluster/topology" concept (a <code>pg_nodes</code>-style view, promotion-candidate discovery on standbys); Sami Imseih's pg_stat_statements LWLock/query-text-file concurrency patches; per-wait-event counters; and the unsolved ICU-upgrade-invalidates-indexes collation problem (with Oracle's pragmatic per-operator default as a reference). <em>(ardentperf.com)</em></li>
+<li><strong><a href="https://ashutoshpg.blogspot.com/2026/05/my-reflections-on-pgconfdev-2026.html">PGConf.dev 2026 reflections — SQL/PGQ, multithreading, resize-shared-buffers</a></strong> — Ashutosh Bapat reports on the graph-DB developer meeting (SQL/PGQ + AGE), the logical-replication working group (DDL replication and gaps before LR is usable for high-volume OLAP), the multithreading effort, and a quick design agreement with Databricks engineers (Heikki et al.) on resizing shared buffers without restart, built on the PG 19 shared-memory rework. <em>(ashutoshpg.blogspot.com)</em></li>
+</ul>
+<h2>Migration experience</h2>
+<ul>
+<li><strong><a href="https://www.percona.com/blog/migrate-from-crunchy-data-to-percona-postgresql-operator-standby-cluster/">Crunchy Data PGO → Percona PostgreSQL Operator: two migration paths</a></strong> — Slava Sarzhan documents real cross-operator migrations on Kubernetes, with the actual mechanics rather than a pitch. <em>(Slava Sarzhan · Percona)</em> <em>[vendor blog — substantive]</em><ul>
+<li>Standby-cluster method: <a href="https://www.percona.com/blog/migrate-from-crunchy-data-to-percona-postgresql-operator-standby-cluster/">percona.com</a></li>
+<li>Backup-restore &amp; PV-reuse method: <a href="https://www.percona.com/blog/migrate-from-crunchy-data-to-percona-postgresql-operator-backup-restore-pv-reuse/">percona.com</a></li>
+</ul>
+</li>
+</ul>
+<h2>Releases</h2>
+<ul>
+<li><strong><a href="https://www.percona.com/blog/percona-operator-for-postgresql-3-0-0-hard-fork-olm-scoping-major-upgrades/">Percona Operator for PostgreSQL 3.0.0</a></strong> — completes the hard fork from Crunchy PGO. <em>(Percona)</em><ul>
+<li>inherited CRDs renamed under <code>upstream.pgv2.percona.com</code>, so the Crunchy and Percona operators can now coexist in the same cluster/namespace (no CRD/webhook/finalizer collision); one-time auto-migration on upgrade</li>
+<li>fixed OpenShift OLM namespace scoping (watch list now honours the OperatorGroup)</li>
+<li>major-version upgrades now use the official <code>percona-distribution-postgresql-upgrade</code> image so pg_upgrade runs the same signed binaries as production; note: <code>pgaudit</code> must be dropped/recreated manually and collation versions refreshed after PG 18 upgrade</li>
+<li>drops CRD support for operator 2.7.0; built with Go 1.26; supports PostgreSQL 14–18</li>
+</ul>
+</li>
+<li><strong><a href="https://github.com/vyruss/pg_statviz">pg_statviz 1.1</a></strong> — minimalist extension + utility for time-series capture and visualisation of internal PostgreSQL statistics (featured in Postgres Weekly #650). <em>(github.com/vyruss)</em></li>
+</ul>
+<h2>New sources added this week</h2>
+<ul>
+<li><strong><a href="https://event-driven.io/en/category?category=PostgreSQL">event-driven.io (Oskar Dudycz)</a></strong> — independent engineering blog with reproducible, first-hand Postgres bug stories (locking, time functions, logical replication, outbox patterns) tied to real production incidents. <em>(event-driven.io)</em></li>
+</ul>
+<hr />
+<p><em>8 items · sources scanned: ~25 · filtered out as marketing/ads: ~12</em></p>
+    </article>
+    <footer>
+      <a href="../index.html">← All digests</a> ·
+      <a href="../feed.xml">RSS feed</a> ·
+      <a href="https://github.com/danolivo/dbms-digest/blob/main/digests/2026-05-25.md">View source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>
