@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of PostgreSQL &amp; wider DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jun 2026 17:04:48 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 17:09:44 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)</title>
@@ -57,11 +57,13 @@
 <li><strong><a href="https://arxiv.org/abs/2606.10270">Determination Provenance: From Ambiguity to Algebra</a></strong> — Joseph M. Hellerstein gives an algebraic treatment of determination/provenance. <em>(arXiv)</em> <em>[paper]</em></li>
 </ul>
 <h2>Call for papers</h2>
-<p><em>Forward-looking; open as of 2026-06-20, nearest deadline first.</em>
-- <strong><a href="https://www.postgresql.org/about/news/pgday-israel-2026-call-for-papers-is-now-open-3291/">PGDay Israel 2026</a></strong> — CFP closes <strong>Jul 1, 2026</strong>. <em>(community)</em>
-- <strong><a href="https://vldb.org/2027/call-for-research-track.html">VLDB 2027 — Athens, Aug 23–27, 2027</a></strong> — rolling monthly PVLDB research deadlines; next on/around <strong>Jul 1, 2026</strong>. <em>(research)</em>
-- <strong><a href="https://2027.sigmod.org/calls_papers_sigmod_research.shtml">SIGMOD 2027 — Huntington Beach, Jun 13–19, 2027</a></strong> — research-track Round 3 closes <strong>Jul 17, 2026</strong>. <em>(research)</em>
-- <strong><a href="https://www.cidrdb.org/cidr2027/cfp.html">CIDR 2027 — Amsterdam, Jan 24–27, 2027</a></strong> — CFP open; deadline on the page. <em>(research)</em></p>
+<p><em>Forward-looking; open as of 2026-06-20, nearest deadline first.</em></p>
+<ul>
+<li><strong><a href="https://www.postgresql.org/about/news/pgday-israel-2026-call-for-papers-is-now-open-3291/">PGDay Israel 2026</a></strong> — CFP closes <strong>Jul 1, 2026</strong>. <em>(community)</em></li>
+<li><strong><a href="https://vldb.org/2027/call-for-research-track.html">VLDB 2027 — Athens, Aug 23–27, 2027</a></strong> — rolling monthly PVLDB research deadlines; next on/around <strong>Jul 1, 2026</strong>. <em>(research)</em></li>
+<li><strong><a href="https://2027.sigmod.org/calls_papers_sigmod_research.shtml">SIGMOD 2027 — Huntington Beach, Jun 13–19, 2027</a></strong> — research-track Round 3 closes <strong>Jul 17, 2026</strong>. <em>(research)</em></li>
+<li><strong><a href="https://www.cidrdb.org/cidr2027/cfp.html">CIDR 2027 — Amsterdam, Jan 24–27, 2027</a></strong> — CFP open; deadline on the page. <em>(research)</em></li>
+</ul>
 <p><em>(PGConf.EU 2026's CFP closed Jun 1, so it's excluded — the section lists only still-open calls.)</em></p>
 <hr />
 <p><em>23 items · sources scanned: ~30 · community threads scanned: HN (40 DB stories) · international: 2 (ru) · CFPs open: 4 · filtered out as marketing/ads: 8</em></p>]]></content:encoded>

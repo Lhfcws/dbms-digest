@@ -184,6 +184,7 @@ Notes on the format:
   ```
 - **Community pulse items** link to the discussion thread and tag the platform plus a rough engagement signal, e.g. `*(Hacker News · 240 pts, 180 comments)*` or `*(r/PostgreSQL · 95 upvotes)*`. Keep to the 3–8 most-discussed threads, deduped against the rest of the digest.
 - **Call-for-papers items** are forward-looking, not week-bound: list a conference / PGDay / meetup (and applied DB-systems venues close to Postgres) only while its CFP deadline is still in the future, sorted by nearest deadline, tagged *(community)* or *(research)*.
+- **Blank line before every list.** A bullet list must be preceded by a blank line (CommonMark). If a section opens with an intro sentence (e.g. the Call-for-papers "open as of …" line), leave a blank line before the first `-`, or the whole block renders as one paragraph instead of a list.
 - **Skip empty sections silently.** Omit any section that has no items — do NOT write "nothing this week", "no items found", or an apology/explanation. A missing section just means nothing qualified; the reader infers that. Never add filler narration about gaps.
 - If delivering to Telegram or another plain-text channel later, the same content works; just drop the Markdown headers to bullet groups if the target doesn't render Markdown.
 
