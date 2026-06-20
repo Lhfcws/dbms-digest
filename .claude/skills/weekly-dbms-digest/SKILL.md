@@ -25,6 +25,8 @@ Use web search and page fetches to collect: title, URL, author/source, publish d
 
 **Scan non-English sources too.** Work the multilingual set in `references/sources.md` (Russian, Chinese, French, German, Japanese). Search in the **native language** — the best regional engineering write-ups never surface in English search, so query with native terms (e.g. база данных, 数据库, base de données) alongside `PostgreSQL`. Apply the same anti-marketing and fact-check bar, and be careful not to let a machine translation distort a technical claim — verify numbers/behaviour against the original or a primary source. Present these per the non-English formatting rule below.
 
+**Tooling for non-English / JS-heavy sources.** Plain page fetches only see raw HTML, so client-rendered or region-specific sites (Chinese aggregators like modb.pro, PolarDB / Alibaba Cloud, PingCAP — also Reddit and Qiita) often return stale or empty content. In order of preference: (1) use each source's **native RSS/Atom feed** (listed in `references/sources.md`) — feeds are dated, language-native, and fetch cleanly; (2) when there's no usable feed, **render the page with the Claude-in-Chrome browser tools** rather than a plain fetch; (3) treat web search as English/US-biased — use it to confirm, not to discover, non-English items. The Chinese ecosystem in particular publishes heavily and is mostly invisible to English search, so lean on its feeds and the browser.
+
 ### 3. Scan PostgreSQL mailing lists
 
 Scan the four key lists for the current time window. Use the PostgreSQL list archives at `https://www.postgresql.org/list/<listname>/` (monthly view) or web-search `site:postgresql.org/message-id` with topic keywords to pull specific threads.
@@ -73,13 +75,23 @@ Pick the 3–8 threads with the most substantive discussion. **Dedupe against th
 
 Follow `community-sources.md`'s upkeep rules every run: **discover** new active DB communities (a fresh subreddit, a Discourse forum, a public Telegram/Matrix channel) and append keepers to its Discovery log; **prune** any listed source that's been silent for ~3 months, is gone, or has turned promotional by moving it to that file's Retired log (with date + reason) so it leaves the weekly scan but isn't blindly re-added. `[auth]` sources (the community Slack / Discord / IRC) stay listed but are **not** scanned until a connector or credential exists — never fabricate their content.
 
-### 5. Discover emerging sources (self-update)
+### 5. Collect open calls for papers (CFPs)
+
+Build the closing **Call for papers** section. Unlike the rest of the digest this is **not** bound by the 7-day window — it's forward-looking: list a CFP while its submission deadline is still in the future (as of the run date) and drop it once the deadline passes. Sort by nearest deadline.
+
+Cover two buckets:
+- **PostgreSQL community events** — conferences, PGDays, and meetups (PGConf.dev, PGConf.EU, PGConf.NYC/India, Nordic PGDay, PGDay Paris/Boston/UK/Lowlands/Israel, FOSDEM PGDay, Prague PostgreSQL Developer Day, Swiss PGDay, …). Check the Conferences & CFP trackers in `references/sources.md`, the PostgreSQL events page and news archive, and the dev.events/postgres aggregator.
+- **Applied & research DB-systems venues close to Postgres** — VLDB, SIGMOD, CIDR, ICDE, DEBS, USENIX ATC/OSDI, plus practitioner conferences (P99 CONF, HYTRADBOI). Use the venue CFP pages and WikiCFP.
+
+For each item give the conference, location + dates, the **CFP deadline**, and the link; tag *(community)* or *(research)*. Confirm the deadline is genuinely still open before listing — a closed CFP is noise.
+
+### 6. Discover emerging sources (self-update)
 
 Each run, spend a little effort looking for **new, high-quality sources** that aren't yet in `references/sources.md`: a new independent engineering blog, a fresh research group page, a newly active newsletter, a conference that just posted proceedings. Good signals are: cited by sources you already trust, written by known contributors, deep technical content with no sales pitch.
 
 When you find a keeper, **append it to `references/sources.md`** under the right section with a one-line note on why it's worth watching. This is how the skill stays current instead of going stale. Conversely, if a listed source has gone dormant or turned into pure marketing, mark it accordingly.
 
-### 6. Filter out marketing, ads, and promotion
+### 7. Filter out marketing, ads, and promotion
 
 This is the core value of the digest. **Exclude** an item (or flag it clearly if it's borderline but still has real content) when it shows the hallmarks of marketing rather than engineering:
 
@@ -99,11 +111,11 @@ This is the core value of the digest. **Exclude** an item (or flag it clearly if
 
 **Migration experience.** Actively look for real-world migration experience reports — moving to/from Postgres, Oracle→Postgres, MySQL→Postgres, cross-cloud, version upgrades at scale — where the author shares what actually happened (pitfalls, downtime, data discrepancies, tooling, rollback). These are high-value; prioritise them. Generic "why you should migrate to our product" posts are marketing — cut them.
 
-### 7. Fact-check before including
+### 8. Fact-check before including
 
 For each surviving item, do a quick sanity pass: does the headline claim match the body? Are benchmark claims accompanied by setup details (hardware, dataset, versions)? Is a "Postgres now does X" claim actually in a release/commit, or just speculation? Cross-check surprising claims against a second source (commit, mailing-list thread, the actual paper). If a claim can't be substantiated, either drop the item or append a short `[unverified]` note so the reader knows.
 
-### 8. Write the digest
+### 9. Write the digest
 
 Use the exact format below. Keep each line to roughly one sentence — the value is in being scannable. Order items by importance (most significant first), lightly grouped by theme. Aim for ~10–25 items; quality over quantity. If a slow week yields little, a short honest digest beats padding.
 
@@ -145,6 +157,10 @@ Use the exact format below. Keep each line to roughly one sentence — the value
 - **[<English headline>](URL)** — <one-liner>. *(<Author> · <source>)* [ru] _(orig: <original title>)_
 - ...
 
+## Call for papers
+- **[<Conference> — <location>, <dates>](CFP URL)** — CFP closes <deadline>. *(community)*
+- ...
+
 ## New sources added this week
 - **[<source name>](URL)** — <why it's worth following>. *(<author>)*
 
@@ -165,6 +181,7 @@ Notes on the format:
       - PostgreSQL 18+
   ```
 - **Community pulse items** link to the discussion thread and tag the platform plus a rough engagement signal, e.g. `*(Hacker News · 240 pts, 180 comments)*` or `*(r/PostgreSQL · 95 upvotes)*`. Keep to the 3–8 most-discussed threads, deduped against the rest of the digest.
+- **Call-for-papers items** are forward-looking, not week-bound: list a conference / PGDay / meetup (and applied DB-systems venues close to Postgres) only while its CFP deadline is still in the future, sorted by nearest deadline, tagged *(community)* or *(research)*.
 - **Skip empty sections silently.** Omit any section that has no items — do NOT write "nothing this week", "no items found", or an apology/explanation. A missing section just means nothing qualified; the reader infers that. Never add filler narration about gaps.
 - If delivering to Telegram or another plain-text channel later, the same content works; just drop the Markdown headers to bullet groups if the target doesn't render Markdown.
 

@@ -65,12 +65,41 @@ or `[mostly-marketing]` rather than deleting it, so it isn't re-added next week.
 - **DBWorld (SIGMOD)** — CfPs and community announcements; useful to spot what's hot. P3. https://dbworld.sigmod.org/browse.html
 - **arXiv cs.DB** — database preprints. P2. https://arxiv.org/list/cs.DB/recent
 
+## Conferences & CFP trackers (for the Call-for-papers section)
+
+Find conferences / PGDays / meetups with an **open** CFP, plus applied/research venues close to
+Postgres. List a CFP only while its deadline is in the future.
+
+**PostgreSQL community events**
+- **PostgreSQL.org — Upcoming events** — official community event list. P1. https://www.postgresql.org/about/events/
+- **PostgreSQL.org — News archive** — "CFP is now open" announcements land here. P1. https://www.postgresql.org/about/newsarchive/
+- **dev.events — Postgres** — aggregator of Postgres conferences with dates/CFPs. P2. https://dev.events/postgres
+- **PGConf.dev** — the developers' conference. P2. https://www.pgconf.dev/
+- **PGConf.EU** — European community conference (year-versioned site). P2. https://www.pgconf.eu/
+- _Regional PGDays_: Nordic PGDay, PGDay Paris, PGDay Boston, PGDay UK / Lowlands, PGDay Israel, FOSDEM PGDay, Prague PostgreSQL Developer Day (p2d2.cz), Swiss PGDay, PGConf NYC / India. P3.
+
+**Applied & research DB-systems venues (close to Postgres)**
+- **VLDB** — rolling monthly PVLDB research deadlines. P2. https://www.vldb.org/
+- **ACM SIGMOD** — multi-round research deadlines (year-versioned site). P2. https://sigmod.org/
+- **CIDR** — innovative/early systems ideas. P2. https://www.cidrdb.org/
+- **IEEE ICDE** — https://icde.org/ . P3.
+- **DEBS** — distributed & event-based systems. https://debs.org/ . P3.
+- **USENIX ATC / OSDI** — systems venues with frequent DB work. https://www.usenix.org/conferences . P3.
+- **WikiCFP — databases** — academic CFP aggregator. http://www.wikicfp.com/cfp/call?conference=databases . P3.
+- _Practitioner_: P99 CONF, HYTRADBOI. P3.
+
 ## Non-English sources (multilingual)
 
 _Scan these in their native language and present items per the non-English formatting rule
 (English headline + one-liner, a language tag, original title in parentheses). The same
 anti-marketing and fact-check bar applies — verify technical claims against the original, not
 just a translation._
+
+_Prefer each source's RSS/Atom feed where available (dated, language-native, fetches cleanly).
+For JS-heavy or region-specific sites that return stale/empty HTML — Chinese aggregators
+(modb.pro), PolarDB / Alibaba Cloud, PingCAP, also Reddit and Qiita — render them with the
+Claude-in-Chrome browser tools instead of a plain fetch. Treat web search as English/US-biased:
+use it to confirm, not to discover._
 
 ### Russian `[ru]`
 - **Postgres Pro blog** — Russian Postgres vendor; internals, patches, version deep-dives (some cross-posted in EN). P2. https://postgrespro.ru/blog
@@ -83,14 +112,14 @@ just a translation._
 - **modb.pro (墨天轮)** — Chinese DBA community and articles (Oracle, PG, MySQL, domestic engines). P3. https://www.modb.pro/
 
 ### French `[fr]`
-- **Dalibo blog** — French Postgres consultancy; substantive internals (FR, some EN). P2. https://blog.dalibo.com/
+- **Dalibo blog** — French Postgres consultancy; substantive internals (FR, some EN). P2. https://blog.dalibo.com/ · RSS https://blog.dalibo.com/feed.xml
 - **dbi-services blog** — Swiss; PG/Oracle/SQL Server ops (FR + EN). P3. https://www.dbi-services.com/blog/
 
 ### German `[de]`
 - **Cybertec (DE)** — German-language posts from the Cybertec team (the EN edition is listed above). P3. https://www.cybertec-postgresql.com/de/
 
 ### Japanese `[ja]`
-- **Qiita — PostgreSQL tag** — large JP dev community; how-tos and internals. `[js]` P3. https://qiita.com/tags/postgresql
+- **Qiita — PostgreSQL tag** — large JP dev community; how-tos and internals. `[js]` P3. https://qiita.com/tags/postgresql · RSS https://qiita.com/tags/postgresql/feed
 - **SRA OSS (JP)** — Japanese Postgres support company write-ups. P3. https://www.sraoss.co.jp/
 
 _Discover more per the self-update rule — pin precise regional blogs/authors/channels
