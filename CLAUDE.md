@@ -33,9 +33,11 @@ Whenever you open this project (in Cowork or Claude Code), run the following rou
    `python3 scripts/build_feed.py` to regenerate `docs/feed.xml` and `docs/index.html` from the
    digests. The feed is what people read on their phones; keep it in sync.
 
-7. **Commit.** Stage the new digest files, the README change, any sources update, and the
-   regenerated `docs/` files, and commit with a message like
-   `digest: add weeks YYYY-MM-DD … (auto)`. One commit per run is fine. Do not push unless asked.
+7. **Commit and push.** Stage the new digest files, the README change, any sources update, and
+   the regenerated `docs/` files, and commit with a message like
+   `digest: add weeks YYYY-MM-DD … (auto)`. One commit per run is fine. Then `git push` to
+   `origin` so the feed and GitHub Pages site update. If the push fails (no credentials, no
+   network), keep the local commit and report that the push needs to be done manually.
 
 If there are no gaps, say so and make no commit.
 
