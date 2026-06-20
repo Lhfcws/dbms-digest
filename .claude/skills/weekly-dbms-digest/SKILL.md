@@ -141,6 +141,10 @@ Use the exact format below. Keep each line to roughly one sentence — the value
 - **[<Headline>](URL)** — <one line>. *(<authors / venue>)* _[paper]_
 - ...
 
+## International (non-English sources)
+- **[<English headline>](URL)** — <one-liner>. *(<Author> · <source>)* [ru] _(orig: <original title>)_
+- ...
+
 ## New sources added this week
 - **[<source name>](URL)** — <why it's worth following>. *(<author>)*
 
@@ -153,7 +157,7 @@ Notes on the format:
 - **The headline is the link** (`**[Headline](URL)**`) — one big tap target, ideal on a phone; do not add a trailing `[link]`. The one-liner says *why a Postgres hacker should care*, not just what it is.
 - **End each item with the author/source in italics**, e.g. `*(Christophe Pettus · thebuild.com)*`. Include the author's name when it isn't already in the one-liner; otherwise just the source/site (or venue, for papers). On a phone this lets the reader triage before tapping.
 - Append `[paper]`, `[unverified]`, `[by committer]`, `[vendor blog — substantive]`, or a language tag (`[ru]` `[zh]` `[fr]` `[de]` `[ja]`) only when useful.
-- **Non-English items**: translate the headline and one-liner into English, add the language tag, and keep the original title in italics in parentheses — e.g. `- **[Inside PolarDB's shared-storage buffer pool](URL)** — how it decouples buffer management from local disk. *(Alibaba Cloud · developer.aliyun.com)* [zh] _(原: …)_`. Verify technical claims against the original, not just the translation.
+- **Non-English items go in their own `## International` section** (don't scatter them across the topical sections). Each gets an English headline + one-liner, a language tag (`[ru]` `[zh]` `[fr]` `[de]` `[ja]`), and the original title in italics in parentheses — e.g. `- **[Inside PolarDB's shared-storage buffer pool](URL)** — how it decouples buffer management from local disk. *(Alibaba Cloud · developer.aliyun.com)* [zh] _(orig: …)_`. Verify technical claims against the original, not just the translation.
 - **Release items** (extension/utility releases) may break the one-line rule: give a headline line plus an optional short indented sub-list of the key changes (new features, notable fixes, breaking changes, target server version). Example:
   ```
   - **[pg_kpart 1.0](URL)** — new index-time guard against full-partition scans. *(<author> · <source>)*

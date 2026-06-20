@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of PostgreSQL &amp; wider DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jun 2026 15:19:32 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jun 2026 16:34:40 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)</title>
@@ -45,6 +45,11 @@
 <li><strong><a href="https://dev.to/franckpachot/rum-storing-more-in-the-index-4hoe">RUM: storing more in the index</a></strong> — Franck Pachot deep-dive on Postgres RUM indexes (carrying extra payload in the index to serve ESR-style equality/sort/range queries the way other engines' covering indexes do). <em>(dev.to)</em></li>
 <li><strong><a href="https://dev.to/franckpachot/gin-understanding-postgresqls-inverted-index-and-its-limitations-40hn">GIN: understanding PostgreSQL's inverted index and its limitations</a></strong> — Pachot walks the internals and trade-offs of GIN indexing, with cross-engine framing. <em>(dev.to)</em></li>
 </ul>
+<h2>International (non-English sources)</h2>
+<ul>
+<li><strong><a href="https://habr.com/ru/companies/postgrespro/articles/1045532/">Postgres Pro evolves a "Virtual DBA" LLM agent's environment with record/replay</a></strong> — Postgres Professional ran an evolutionary search over a Postgres-diagnosis agent's setup (prompts, analysis steps, MCP tools) by recording and fast-replaying real workloads; a headline finding is that handing the agent <em>more</em> tools can actually worsen its final verdict. <em>(Postgres Professional · habr.com)</em> [ru] <em>(orig: «Промпты, RAG, LLM-тюнинг, Harness… Идём дальше?»)</em></li>
+<li><strong><a href="https://habr.com/ru/articles/1047374/">Three discovery problems with Postgres master/replica — and a lightweight fix</a></strong> — finding the master after failover, picking a replica within an acceptable lag, and guaranteeing read-your-writes, solved with a small HTTP service (pg-status) instead of DNS/HAProxy hacks that don't understand replication LSN. <em>(krylosov-aa · habr.com)</em> [ru] <em>(orig: «Три задачи discovery при работе с PostgreSQL master/replica — и как их решить»)</em></li>
+</ul>
 <h2>Research &amp; cutting edge</h2>
 <ul>
 <li><strong><a href="https://arxiv.org/abs/2606.09133">Multiversion Concurrency Control for Multiversion B-Trees</a></strong> — cMVBT redesigns the multiversion B-tree with optimistic latches for writers and latch-free range scans plus continuous GC, beating version-chain MVCC on write throughput and arbitrary-version range scans. <em>(arXiv)</em> <em>[paper]</em></li>
@@ -52,7 +57,7 @@
 <li><strong><a href="https://arxiv.org/abs/2606.10270">Determination Provenance: From Ambiguity to Algebra</a></strong> — Joseph M. Hellerstein gives an algebraic treatment of determination/provenance. <em>(arXiv)</em> <em>[paper]</em></li>
 </ul>
 <hr />
-<p><em>21 items · sources scanned: ~30 · community threads scanned: HN (40 DB stories) · filtered out as marketing/ads: 8</em></p>]]></content:encoded>
+<p><em>23 items · sources scanned: ~30 · community threads scanned: HN (40 DB stories) · international: 2 (ru) · filtered out as marketing/ads: 8</em></p>]]></content:encoded>
     </item>
     <item>
       <title>DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)</title>
