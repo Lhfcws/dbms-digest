@@ -65,6 +65,37 @@ or `[mostly-marketing]` rather than deleting it, so it isn't re-added next week.
 - **DBWorld (SIGMOD)** — CfPs and community announcements; useful to spot what's hot. P3. https://dbworld.sigmod.org/browse.html
 - **arXiv cs.DB** — database preprints. P2. https://arxiv.org/list/cs.DB/recent
 
+## Non-English sources (multilingual)
+
+_Scan these in their native language and present items per the non-English formatting rule
+(English headline + one-liner, a language tag, original title in parentheses). The same
+anti-marketing and fact-check bar applies — verify technical claims against the original, not
+just a translation._
+
+### Russian `[ru]`
+- **Postgres Pro blog** — Russian Postgres vendor; internals, patches, version deep-dives (some cross-posted in EN). P2. https://postgrespro.ru/blog
+- **Habr — PostgreSQL hub** — large RU dev community; internals posts and production war stories. `[js]` P2. https://habr.com/ru/hubs/postgresql/
+
+### Chinese `[zh]`
+- **PingCAP / TiDB blog (CN)** — distributed SQL internals, Raft, TiKV. P2. https://cn.pingcap.com/blog/
+- **OceanBase** — distributed DB engineering write-ups (CN). P3. https://www.oceanbase.com/
+- **Alibaba Cloud developer (PolarDB / AnalyticDB)** — engine internals; huge, filter hard. `[js]` P3. https://developer.aliyun.com/
+- **modb.pro (墨天轮)** — Chinese DBA community and articles (Oracle, PG, MySQL, domestic engines). P3. https://www.modb.pro/
+
+### French `[fr]`
+- **Dalibo blog** — French Postgres consultancy; substantive internals (FR, some EN). P2. https://blog.dalibo.com/
+- **dbi-services blog** — Swiss; PG/Oracle/SQL Server ops (FR + EN). P3. https://www.dbi-services.com/blog/
+
+### German `[de]`
+- **Cybertec (DE)** — German-language posts from the Cybertec team (the EN edition is listed above). P3. https://www.cybertec-postgresql.com/de/
+
+### Japanese `[ja]`
+- **Qiita — PostgreSQL tag** — large JP dev community; how-tos and internals. `[js]` P3. https://qiita.com/tags/postgresql
+- **SRA OSS (JP)** — Japanese Postgres support company write-ups. P3. https://www.sraoss.co.jp/
+
+_Discover more per the self-update rule — pin precise regional blogs/authors/channels
+(incl. Telegram, WeChat, Qiita) as you find keepers; retire dead ones._
+
 ## New sources added (log)
 
 _Append discoveries here with date, name, link, and a one-line reason. Example:_

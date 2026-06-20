@@ -23,6 +23,8 @@ Read `references/sources.md` for the curated source list, grouped into Postgres,
 
 Use web search and page fetches to collect: title, URL, author/source, publish date, and enough of the body to judge it. Cast a wide net here — filtering happens next.
 
+**Scan non-English sources too.** Work the multilingual set in `references/sources.md` (Russian, Chinese, French, German, Japanese). Search in the **native language** — the best regional engineering write-ups never surface in English search, so query with native terms (e.g. база данных, 数据库, base de données) alongside `PostgreSQL`. Apply the same anti-marketing and fact-check bar, and be careful not to let a machine translation distort a technical claim — verify numbers/behaviour against the original or a primary source. Present these per the non-English formatting rule below.
+
 ### 3. Scan PostgreSQL mailing lists
 
 Scan the four key lists for the current time window. Use the PostgreSQL list archives at `https://www.postgresql.org/list/<listname>/` (monthly view) or web-search `site:postgresql.org/message-id` with topic keywords to pull specific threads.
@@ -150,7 +152,8 @@ _<N> items · sources scanned: <count> · filtered out as marketing/ads: <count>
 Notes on the format:
 - **The headline is the link** (`**[Headline](URL)**`) — one big tap target, ideal on a phone; do not add a trailing `[link]`. The one-liner says *why a Postgres hacker should care*, not just what it is.
 - **End each item with the author/source in italics**, e.g. `*(Christophe Pettus · thebuild.com)*`. Include the author's name when it isn't already in the one-liner; otherwise just the source/site (or venue, for papers). On a phone this lets the reader triage before tapping.
-- Append `[paper]`, `[unverified]`, `[by committer]`, or `[vendor blog — substantive]` tags only when useful.
+- Append `[paper]`, `[unverified]`, `[by committer]`, `[vendor blog — substantive]`, or a language tag (`[ru]` `[zh]` `[fr]` `[de]` `[ja]`) only when useful.
+- **Non-English items**: translate the headline and one-liner into English, add the language tag, and keep the original title in italics in parentheses — e.g. `- **[Inside PolarDB's shared-storage buffer pool](URL)** — how it decouples buffer management from local disk. *(Alibaba Cloud · developer.aliyun.com)* [zh] _(原: …)_`. Verify technical claims against the original, not just the translation.
 - **Release items** (extension/utility releases) may break the one-line rule: give a headline line plus an optional short indented sub-list of the key changes (new features, notable fixes, breaking changes, target server version). Example:
   ```
   - **[pg_kpart 1.0](URL)** — new index-time guard against full-partition scans. *(<author> · <source>)*
