@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBMS Weekly — 2026-06-15 (week of 2026-06-15–2026-06-21) · DBMS Digest</title>
+  <meta name="description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 15–Jun 21, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#0d1b2e">
+  <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-06-15.html">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="DBMS Digest" href="../feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="DBMS Digest">
+  <meta property="og:title" content="DBMS Weekly — 2026-06-15 (week of 2026-06-15–2026-06-21)">
+  <meta property="og:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 15–Jun 21, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-06-15.html">
+  <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DBMS Weekly — 2026-06-15 (week of 2026-06-15–2026-06-21)">
+  <meta name="twitter:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 15–Jun 21, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-15 (week of 2026-06-15–2026-06-21)", "description": "PostgreSQL & DBMS internals digest for the week of Jun 15–Jun 21, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-15.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-15.html", "datePublished": "2026-06-15T12:00:00+00:00", "dateModified": "2026-06-15T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <style>
+    :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--navy); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:var(--blue); }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 20px 64px; }
+    .wrap.wide { max-width:1060px; }
+    .banner img { width:100%; height:auto; border-radius:12px; display:block; }
+    .site-title { font-size:1.6rem; margin:26px 0 8px; color:var(--ink); }
+    .intro { color:var(--mut); margin:0 0 6px; font-size:1.02rem; line-height:1.6; }
+    .sublabel { font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin:28px 0 4px; }
+    p.lead { color:var(--ink); margin:0 0 20px; }
+    .sub { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--navy);
+      font-weight:700; text-decoration:none; padding:11px 18px; border-radius:999px; }
+    .sub:active { opacity:.85; }
+    .feedurl { display:block; margin:14px 0 0; color:var(--mut); font-size:.85rem; word-break:break-all; }
+    .feedurl code { color:var(--blue); }
+    .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
+      border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
+    ul.index { list-style:none; padding:0; margin:0; }
+    ul.index li { border-bottom:1px solid var(--navy2); }
+    ul.index li a { display:flex; gap:12px; align-items:baseline; padding:13px 4px; text-decoration:none; color:var(--ink); }
+    ul.index li a:hover { color:var(--amber); }
+    .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
+    .week { color:var(--mut); }
+    .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
+    .backlink:hover { color:var(--amber); }
+    footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
+    footer a { color:var(--blue); }
+    .layout { display:block; }
+    nav.toc { display:none; }
+    @media (min-width:980px) {
+      .layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:44px; align-items:start; }
+      nav.toc { display:block; position:sticky; top:24px; font-size:.85rem; }
+    }
+    nav.toc .toc-title { text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; color:var(--mut); margin:0 0 10px; }
+    nav.toc ul { list-style:none; padding:0; margin:0; }
+    nav.toc li { margin:2px 0; border:0; }
+    nav.toc a { display:block; padding:4px 10px; color:var(--mut); text-decoration:none;
+      border-left:2px solid var(--navy2); line-height:1.35; }
+    nav.toc a:hover { color:var(--amber); border-left-color:var(--amber); }
+    .prose h1 { font-size:1.5rem; line-height:1.25; margin:8px 0 18px; color:var(--ink); }
+    .prose h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+      border-top:1px solid var(--navy2); padding-top:22px; margin:34px 0 12px; scroll-margin-top:20px; }
+    .prose p { margin:.5em 0 1em; }
+    .prose ul { padding-left:1.2em; margin:.4em 0 1.2em; }
+    .prose li { margin:.5em 0; }
+    .prose li::marker { color:var(--mut); }
+    .prose a { text-decoration:none; border-bottom:1px solid transparent; }
+    .prose a:hover { color:var(--amber); border-bottom-color:var(--amber); }
+    .prose strong { color:var(--ink); }
+    .prose em { color:var(--mut); }
+    .prose code { background:var(--navy2); color:#cfe0f5; padding:1px 5px; border-radius:4px; font-size:.92em; }
+    .prose hr { border:0; border-top:1px solid var(--navy2); margin:28px 0; }
+    .prose blockquote { margin:1em 0; padding:.4em 1em; border-left:3px solid var(--amber); color:var(--mut); }
+</style>
+</head>
+<body>
+  <div class="wrap wide">
+    <a class="backlink" href="../index.html">← All digests</a>
+    <div class="layout">
+    <nav class="toc"><p class="toc-title">Sections</p>
+      <ul>
+        <li><a href="#postgresql">PostgreSQL</a></li>
+        <li><a href="#wider-dbms-distributed-data">Wider DBMS &amp;amp; distributed data</a></li>
+        <li><a href="#migration-experience">Migration experience</a></li>
+        <li><a href="#new-sources-added-this-week">New sources added this week</a></li>
+      </ul>
+    </nav>
+      <article class="prose">
+<h1 id="dbms-weekly-2026-06-15-week-of-2026-06-152026-06-21">DBMS Weekly — 2026-06-15 (week of 2026-06-15–2026-06-21)</h1>
+<h2 id="postgresql">PostgreSQL</h2>
+<ul>
+<li><strong><a href="https://posetteconf.com/2026/schedule/">POSETTE: An Event for Postgres 2026 is a wrap — all 44 talks on YouTube</a></strong> — the free virtual event (Jun 16–18, organised by the Postgres team at Microsoft) ran four livestreams; every talk is now un-gated on YouTube. The internals-relevant picks for a hacker:<ul>
+<li><strong><a href="https://www.youtube.com/watch?v=Vw4WKeoxKq4">Postgres 19 Hackers Panel: What's In, What's Out, &amp; What's Next</a></strong> — Álvaro Herrera, Heikki Linnakangas, Melanie Plageman, and Thomas Munro on what made the PG19 feature freeze and what stalled. <em>(keynote)</em></li>
+<li><strong><a href="https://www.youtube.com/watch?v=lbrWJgl8uDQ">random_page_cost — why the default is 4.0 and should you lower it?</a></strong> — Tomas Vondra dissects the planner's random-vs-sequential I/O cost ratio and when the SSD-era default misleads.</li>
+<li><strong><a href="https://www.youtube.com/watch?v=F2DJuDX6XHg">Fuzzing PostgreSQL</a></strong> — Adam Wolk applies fuzzing to libpq, the client library that parses every server message; a template for finding edge-case bugs in stateful C code.</li>
+<li><strong><a href="https://www.youtube.com/watch?v=T7lrE22tgkg">The Wonderful World of WAL</a></strong> — Bruce Momjian walks the write-ahead log as the substrate for crash recovery, PITR, and physical/logical replication.</li>
+<li><strong><a href="https://www.youtube.com/watch?v=CvvA5P1b5No">pg_stats: How Postgres Internal Stats Work</a></strong> — Richard Yen on the statistics model behind seq-scan-vs-index-scan planner decisions.</li>
+<li><strong><a href="https://www.youtube.com/watch?v=oZHhjDD0R74">Journey of developing a performance optimization feature in PostgreSQL</a></strong> — Rahila Syed on systematically diagnosing and fixing an internals bottleneck end-to-end.</li>
+<li><strong><a href="https://www.youtube.com/watch?v=2XPsRAS-sP4">Past, Present, and Future: Logical Decoding and Replication</a></strong> — Hari Kiran traces the arc from the low-level decoding API to today's logical replication.</li>
+<li><strong><a href="https://www.youtube.com/watch?v=LUKCoxAjBrM">Exploring property graphs with SQL/PGQ in PostgreSQL</a></strong> — Ashutosh Bapat on the in-core graph-query syntax landing in PG19.</li>
+</ul>
+</li>
+<li><strong><a href="https://www.postgresql.org/about/news/pg_kpart-version-10-3316/">pg_kpart 1.0</a></strong> — new extension that <em>rejects</em> any query against a protected partitioned table that can't prune a single partition, turning "always filter on the partition key" from convention into a database-enforced guarantee. <em>(Gilles Darold · HexaCluster)</em><ul>
+<li>throws a clear error (with a dedicated SQLSTATE) instead of letting a key-less query trigger a server-wide full-hierarchy scan</li>
+<li>audit mode for staged rollout; blacklist/whitelist scoping to target specific tables</li>
+</ul>
+</li>
+<li><strong><a href="https://www.postgresql.org/about/news/powa-archivist-512-is-out-3317/">powa-archivist 5.1.2</a></strong> — the core collector of the PostgreSQL Workload Analyzer project ships a maintenance release. <em>(PoWA team · Marc Cousin)</em><ul>
+<li>new: per-module retention (set different history-retention windows per collected extension)</li>
+<li>compatible with all supported PostgreSQL versions</li>
+</ul>
+</li>
+</ul>
+<h2 id="wider-dbms-distributed-data">Wider DBMS &amp; distributed data</h2>
+<ul>
+<li><strong><a href="https://www.youtube.com/watch?v=U3ssJlQAJuA">Why we built Azure HorizonDB for PostgreSQL</a></strong> — Dingding Lu (POSETTE) on Microsoft's new cloud-native, Postgres-compatible engine that decouples storage to keep latency predictable under spiky traffic and scale reads without external bolt-ons; a useful look at how a major vendor is re-architecting Postgres for the cloud. <em>(Microsoft · posetteconf.com)</em></li>
+<li><strong><a href="https://www.youtube.com/watch?v=9COYCHn1MuU">pg_lake: Postgres as a lakehouse</a></strong> — Marco Slot (POSETTE) on the extension approach to making Postgres a competent analytics/lakehouse front-end (Iceberg/object-storage interaction) rather than bolting on a separate warehouse. <em>(posetteconf.com)</em></li>
+</ul>
+<h2 id="migration-experience">Migration experience</h2>
+<ul>
+<li><strong><a href="https://www.youtube.com/watch?v=i4mbsBs1wOE">Migrating VLDBs from Oracle to Azure Database for PostgreSQL</a></strong> — Adithya Kumaranchath (POSETTE) shares field-tested strategies for moving multi-terabyte Oracle databases onto a managed Postgres service, where the cloud target adds real constraints over a self-managed migration. <em>(posetteconf.com)</em></li>
+</ul>
+<h2 id="new-sources-added-this-week">New sources added this week</h2>
+<ul>
+<li><strong><a href="https://www.pghackers.com/">pghackers.com — PostgreSQL Hackers Explorer</a></strong> — AI-assisted search/exploration over the pgsql-hackers archive; potentially a faster way to triage in-window threads than the raw monthly index. <em>(surfaced via search; evaluate over coming weeks)</em></li>
+</ul>
+<hr />
+<p><em>5 items · sources scanned: ~25 (Planet PostgreSQL, PostgreSQL news archive, pganalyze, thebuild.com, POSETTE, HN, Habr, arXiv cs.DB, dev.events) · filtered out as marketing/ads: ~6 (incl. recycled Crunchy↔Snowflake from 2025, vendor product talks). Community pulse, Research, and International omitted: no items could be reliably confirmed inside the Jun 15–21 window without fabricating links or engagement counts — a short honest week over padding.</em></p>
+      </article>
+    </div>
+    <footer>
+      <a href="../index.html">← All digests</a> ·
+      <a href="../feed.xml">RSS feed</a> ·
+      <a href="https://github.com/danolivo/dbms-digest/blob/main/digests/2026-06-15.md">View source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>
