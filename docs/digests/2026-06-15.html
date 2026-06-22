@@ -91,8 +91,10 @@
     <nav class="toc"><p class="toc-title">Sections</p>
       <ul>
         <li><a href="#postgresql">PostgreSQL</a></li>
+        <li><a href="#postgresql-mailing-lists">PostgreSQL mailing lists</a></li>
         <li><a href="#wider-dbms-distributed-data">Wider DBMS &amp;amp; distributed data</a></li>
         <li><a href="#migration-experience">Migration experience</a></li>
+        <li><a href="#international-non-english-sources">International (non-English sources)</a></li>
         <li><a href="#new-sources-added-this-week">New sources added this week</a></li>
       </ul>
     </nav>
@@ -122,6 +124,10 @@
 </ul>
 </li>
 </ul>
+<h2 id="postgresql-mailing-lists">PostgreSQL mailing lists</h2>
+<ul>
+<li><strong><a href="http://www.mail-archive.com/pgsql-hackers@lists.postgresql.org/msg231273.html">[hackers] Conflict log history table for Logical Replication — a lost-conflict bug surfaces</a></strong> — the PG20-targeted feature that lets a subscription log apply-time conflicts to a system-managed table (in a <code>pg_conflict</code> schema) instead of just the server log saw heavy review this week. vignesh C reported a real defect: a concurrent <code>ALTER SUBSCRIPTION</code> that switches the conflict-log destination drops the log table while the apply worker still holds its cached OID, so <code>table_open()</code> fails, the worker exits (code 1), and the conflict record is logged <em>nowhere</em>; reviewers also flagged that arbitrary objects (extensions, collations, operators) can be created in <code>pg_conflict</code> and that <code>DROP</code> of the log table errors inconsistently with INSERT/UPDATE. <em>(vignesh C, Peter Smith, Shlok Kyal, Amit Kapila · pgsql-hackers)</em> <code>[patch posted]</code></li>
+</ul>
 <h2 id="wider-dbms-distributed-data">Wider DBMS &amp; distributed data</h2>
 <ul>
 <li><strong><a href="https://www.youtube.com/watch?v=U3ssJlQAJuA">Why we built Azure HorizonDB for PostgreSQL</a></strong> — Dingding Lu (POSETTE) on Microsoft's new cloud-native, Postgres-compatible engine that decouples storage to keep latency predictable under spiky traffic and scale reads without external bolt-ons; a useful look at how a major vendor is re-architecting Postgres for the cloud. <em>(Microsoft · posetteconf.com)</em></li>
@@ -131,12 +137,16 @@
 <ul>
 <li><strong><a href="https://www.youtube.com/watch?v=i4mbsBs1wOE">Migrating VLDBs from Oracle to Azure Database for PostgreSQL</a></strong> — Adithya Kumaranchath (POSETTE) shares field-tested strategies for moving multi-terabyte Oracle databases onto a managed Postgres service, where the cloud target adds real constraints over a self-managed migration. <em>(posetteconf.com)</em></li>
 </ul>
+<h2 id="international-non-english-sources">International (non-English sources)</h2>
+<ul>
+<li><strong><a href="https://qiita.com/harukat1232000/items/272cc7df4ec94b87b6a8">PostgreSQL 19 ushers in a new era of temporal-table design (Part 1)</a></strong> — converts pgbench's standard schema to a temporal design using <code>tsrange</code> <code>valid_at</code> columns, <code>PRIMARY KEY … WITHOUT OVERLAPS</code>, <code>btree_gist</code>, and PG19's <code>UPDATE … FOR PORTION OF</code>; EXPLAIN ANALYZE shows point-in-time lookups stay cheap (Index Scan / Bitmap Index Scan on a single GiST index). Argues Postgres is now uniquely suited to temporal tables — the only major engine combining a range-overlap index with <code>WITHOUT OVERLAPS</code> primary keys — versus SQL Server's split current/history-table approach. <em>(harukat · SRA OSS · qiita.com)</em> [ja] <em>(orig: 「PostgreSQL19でテンポラルテーブル設計の新時代へ(1)」)</em></li>
+</ul>
 <h2 id="new-sources-added-this-week">New sources added this week</h2>
 <ul>
 <li><strong><a href="https://www.pghackers.com/">pghackers.com — PostgreSQL Hackers Explorer</a></strong> — AI-assisted search/exploration over the pgsql-hackers archive; potentially a faster way to triage in-window threads than the raw monthly index. <em>(surfaced via search; evaluate over coming weeks)</em></li>
 </ul>
 <hr />
-<p><em>5 items · sources scanned: ~25 (Planet PostgreSQL, PostgreSQL news archive, pganalyze, thebuild.com, POSETTE, HN, Habr, arXiv cs.DB, dev.events) · filtered out as marketing/ads: ~6 (incl. recycled Crunchy↔Snowflake from 2025, vendor product talks). Community pulse, Research, and International omitted: no items could be reliably confirmed inside the Jun 15–21 window without fabricating links or engagement counts — a short honest week over padding.</em></p>
+<p><em>8 items · sources scanned: ~30 (Planet PostgreSQL, PostgreSQL news archive, pgsql-hackers via mail-archive.com, pganalyze, thebuild.com, POSETTE, Qiita [ja], Habr [ru], modb.pro [zh], arXiv cs.DB) · international: 1 (ja) · filtered out as marketing/ads: ~6 (incl. recycled Crunchy↔Snowflake from 2025, vendor product talks). Community pulse, Research, and a ru/zh International item omitted: nothing could be confirmed inside the Jun 15–21 window without fabricating links or engagement counts.</em></p>
       </article>
     </div>
     <footer>

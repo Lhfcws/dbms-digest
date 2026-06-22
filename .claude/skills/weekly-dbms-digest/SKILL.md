@@ -13,6 +13,29 @@ The output is deliberately terse: each item is a **headline + one line** with a 
 
 Follow these steps in order. Don't skip the filtering and fact-check steps — they are the whole point.
 
+### 0. Fetching technique (read this first — it unblocks everything below)
+
+`web_fetch` will only retrieve a URL that has already appeared **in a prior search
+result or a previously fetched page** ("provenance"). A cold `web_fetch` of a feed or
+archive URL you just typed will fail with *"URL not in provenance set"*. This is the single
+biggest reason past runs skipped the mailing lists and the non-English sources. Defeat it
+deliberately, every run:
+
+1. **Seed with a search.** Run a `WebSearch` whose results contain the index/feed/page you
+   want (e.g. search `mail-archive.com pgsql-hackers <topic>` or the site name). The result
+   URLs are now fetchable.
+2. **Chain through fetched pages.** Every link **on a page you fetched** is itself now
+   fetchable. So fetch an index page, then fetch the items it links to, then their
+   Previous/Next/thread links — you can walk an entire week this way without another search.
+3. **Feeds the same way.** To read an RSS/Atom feed whose URL won't fetch cold, first fetch
+   (or search) the site's HTML page; its `<link rel=alternate>`/feed URL becomes fetchable.
+4. **JS-heavy or empty results → browser.** If a fetch returns an empty shell or a loading
+   page (client-rendered sites: modb.pro, Reddit `.rss`, Qiita, Lobsters tag feed), switch to
+   the Claude-in-Chrome browser tools to render it. Never `curl`/script around a failed fetch.
+5. **If a page is too large**, it is saved to a file path the tool reports — but that path is
+   on the host, not in the sandbox mount, so you usually can't open it. Prefer fetching a
+   narrower URL (a single thread, a single month) over a giant index.
+
 ### 1. Establish the time window
 
 The digest covers the **last 7 days** by default (or the span since the previous digest if the user gives one). Compute the date range with `date` so you don't rely on a guessed "today". Items published outside the window are excluded, even if interesting — note them only if genuinely seminal.
@@ -25,7 +48,7 @@ Read `references/sources.md` for the curated source list, grouped into Postgres,
 
 Use web search and page fetches to collect: title, URL, author/source, publish date, and enough of the body to judge it. Cast a wide net here — filtering happens next.
 
-**Scan non-English sources too.** Work the multilingual set in `references/sources.md` (Russian, Chinese, French, German, Japanese). Search in the **native language** — the best regional engineering write-ups never surface in English search, so query with native terms (e.g. база данных, 数据库, base de données) alongside `PostgreSQL`. Apply the same anti-marketing and fact-check bar, and be careful not to let a machine translation distort a technical claim — verify numbers/behaviour against the original or a primary source. Present these per the non-English formatting rule below.
+**Scan non-English sources too (NON-SKIPPABLE — pull several languages every run).** The Chinese, Japanese, Russian, French and German DB ecosystems are active weekly; defaulting the International section to "Russian only" or omitting it means you under-scanned, not that nobody published. Each run, actively query **at least ru + zh + ja** plus one of fr/de. Work the multilingual set in `references/sources.md` (Russian, Chinese, French, German, Japanese). Search in the **native language** — the best regional engineering write-ups never surface in English search, so query with native terms (e.g. база данных, 数据库, base de données) alongside `PostgreSQL`. Apply the same anti-marketing and fact-check bar, and be careful not to let a machine translation distort a technical claim — verify numbers/behaviour against the original or a primary source. Present these per the non-English formatting rule below.
 
 **Tooling for non-English / JS-heavy sources.** Plain page fetches only see raw HTML, so client-rendered or region-specific sites (Chinese aggregators like modb.pro, PolarDB / Alibaba Cloud, PingCAP — also Reddit and Qiita) often return stale or empty content. In order of preference: (1) use each source's **native RSS/Atom feed** (listed in `references/sources.md`) — feeds are dated, language-native, and fetch cleanly; (2) when there's no usable feed, **render the page with the Claude-in-Chrome browser tools** rather than a plain fetch; (3) treat web search as English/US-biased — use it to confirm, not to discover, non-English items. The Chinese ecosystem in particular publishes heavily and is mostly invisible to English search, so lean on its feeds and the browser.
 
@@ -60,7 +83,25 @@ Scan the four key lists for the current time window. Use the PostgreSQL list arc
 - Threading noise: replies that just say "+1" or "thanks"
 - Build/packaging questions unless a portability bug is confirmed
 
-**How to search:** For each list, search for messages posted in the current week using queries like `pgsql-hackers <topic keyword> site:postgresql.org/message-id` or fetch the monthly archive index. For performance and bugs lists, also try `pgsql-performance regression 2026` or `pgsql-bugs <version>`. Aim to scan at least the subject lines of the top 20–30 threads per list before choosing items.
+**How to scan (PROVEN RECIPE — do not skip the lists, ever).** The mailing lists are
+high-signal and almost always have in-window activity; an empty mailing-list section means you
+didn't look, not that the list was quiet. Use whichever of these works this run:
+
+- **mail-archive.com (most reliable for full text + dates).** Seed once with
+  `WebSearch` for `mail-archive.com pgsql-hackers <topic>`, then fetch
+  `http://www.mail-archive.com/pgsql-hackers@lists.postgresql.org/maillist.html` (and the
+  `mail2.html`, `mail3.html`… "Earlier messages" pages) for a date-ordered list. Each message
+  is `…/msgNNNNNN.html`; **numbers are sequential, higher = newer**, and every page prints a
+  real date (`Sun, 21 Jun 2026 …`) plus Previous/Next and a full thread index you can chain
+  through. Walk back from the newest message until you cross the Monday boundary.
+- **Official archive.** `https://www.postgresql.org/list/` links to each list
+  (`/list/pgsql-hackers/`, `/list/pgsql-bugs/`, `/list/pgsql-performance/`, `/list/pgsql-general/`)
+  and its monthly view `…/2026/06/`; `https://www.postgresql.org/message-id/flat/<id>` renders a
+  whole thread. Reach these by chaining from the `/list/` page (fetch it first to put the links
+  in provenance).
+- **Cross-check** any surprising claim against the git commit or CommitFest entry before
+  including it. Aim to scan the subject lines of the top 20–30 threads per list, pick the few
+  that meet the "what qualifies" bar, and link the thread root.
 
 **Format for mailing list items** (goes in the `## PostgreSQL mailing lists` section):
 ```
