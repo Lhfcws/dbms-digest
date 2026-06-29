@@ -70,7 +70,7 @@
       "week": "2026-06-22",
       "cf": "PG20-1 (#59)",
       "captured_at": "2026-06-29",
-      "note": "Per-CF activity log (/59/activity/) not reachable this run (search index treats #59 as future and would not seed the URL into provenance; could not chain to it without fetching the ~180KB /59/ list page). Global /activity/ served stale (newest rows 2026-05-25). No fresh window flow computed; deliberately not fabricated. queue_snapshot below is from a cached view and is NOT window-scoped (unverified for this week).",
+      "note": "Regenerated 2026-06-29. commitfest.postgresql.org was entirely unreachable this run: the session egress was restricted to a GitHub-only network policy, so WebFetch/curl to the CF app (and the activity log /59/activity/) returned a proxy CONNECT 403. No fresh window flow computed; deliberately not fabricated. queue_snapshot below is carried from the prior run's cached view, was NOT re-fetched, and is NOT window-scoped (unverified for this week). Partial in-window development pulse available from the postgres git master log instead (~30 commits Jun 22-28; several close open CF entries).",
       "queue_snapshot_unverified": {
         "total": 287,
         "needs_review": 194,
