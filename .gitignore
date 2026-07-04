@@ -1,2 +1,5 @@
 .DS_Store
 *.tmp
+
+# digest owner exclusion — keep the owner's identity out of the public repo
+.claude/skills/weekly-dbms-digest/references/exclude.md

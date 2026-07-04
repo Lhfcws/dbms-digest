@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of PostgreSQL &amp; wider DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 29 Jun 2026 08:25:18 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jul 2026 08:35:05 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28)</title>
@@ -37,7 +37,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 </ul>
 <h3>AI meets the project</h3>
 <ul>
-<li><strong><a href="https://postgr.es/p/9nn">Why PostgreSQL needs an AI usage policy</a></strong> — Jan Wieremjewicz argues the project should set norms for AI-generated contributions; it pairs with the active <strong>"The PostgreSQL C Dialect"</strong> hackers thread (10 messages, 6 authors) on codifying the C subset Postgres actually uses. A related Planet post, <strong><a href="https://postgr.es/p/9ns">A Generative Postgres Digest: From Noise to Signal</a></strong> (Andrei Lepikhov), reflects on building an AI-curated Postgres digest. <em>(Percona; pgsql-hackers)</em></li>
+<li><strong><a href="https://postgr.es/p/9nn">Why PostgreSQL needs an AI usage policy</a></strong> — Jan Wieremjewicz argues the project should set norms for AI-generated contributions; it pairs with the active <strong>"The PostgreSQL C Dialect"</strong> hackers thread (10 messages, 6 authors) on codifying the C subset Postgres actually uses. <em>(Percona; pgsql-hackers)</em></li>
 </ul>
 <h3>Ecosystem releases (from the official news archive)</h3>
 <ul>
@@ -97,7 +97,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <li><strong>Greengage blog</strong> <code>[ru]</code> — engineering posts on the Greenplum-lineage Postgres MPP (this week: <code>pg_upgrade</code>/<code>ggupgrade</code> major upgrades and <code>ggrebalance</code> shrink). Worth watching for MPP-on-Postgres internals.</li>
 </ul>
 <hr />
-<p><em>~30 items · sources scanned: Planet PostgreSQL (RSS, 28 in-window posts), postgresql.org news archive, pgsql-hackers archive (full Jun 22–28), CommitFest PG20-1 activity log + queue, postgres git master (full window, ~30 commits), GitHub Releases API (9 engines), ClickHouse 2026 changelog, arXiv cs.DB, Hacker News (Algolia, 7 queries), Habr PostgreSQL hub [ru], Dalibo [fr] · filtered out as marketing/promotion: ~8 — incl. pgEdge ColdFront and PGX Longevity product announcements, Diasoft "Digital Q.DataBase" and ЛАНИТ market-research posts [ru], an "AI Agent Layer" thought-leadership piece, an "MCP for PostgreSQL health checks" promo, and two off-topic HN hits (a Bible RAG demo, a driver's-license database news item) · out-of-window: pg_qualstats 2.1.4 / pg_stat_kcache 2.3.2 / HypoPG 1.4.3 (announced Jun 26 but released Jun 20), PostgreSQL 18.4 et al. (May 15).</em></p>
+<p><em>~30 items · sources scanned: Planet PostgreSQL (RSS, 28 in-window posts), postgresql.org news archive, pgsql-hackers archive (full Jun 22–28), CommitFest PG20-1 activity log + queue, postgres git master (full window, ~30 commits), GitHub Releases API (9 engines), ClickHouse 2026 changelog, arXiv cs.DB, Hacker News (Algolia, 7 queries), Habr PostgreSQL hub [ru], Dalibo [fr] · filtered out as marketing/promotion: ~8 · out-of-window items excluded.</em></p>
 <p><em>Source/fetch note: plain <code>WebFetch</code> timed out on the postgres domains this run (last run it was a GitHub-only egress policy). The full scan was instead done over the in-browser path — Claude-in-Chrome plus same-origin <code>fetch()</code> reached planet.postgresql.org, www.postgresql.org, commitfest.postgresql.org, the GitHub API, arXiv, HN Algolia, Habr and Dalibo cleanly. That recipe is now the reliable fallback when direct fetch is blocked; recorded in <code>sources.md</code>.</em></p>]]></content:encoded>
     </item>
     <item>
@@ -157,7 +157,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <li><strong><a href="https://www.pghackers.com/">pghackers.com — PostgreSQL Hackers Explorer</a></strong> — AI-assisted search/exploration over the pgsql-hackers archive; potentially a faster way to triage in-window threads than the raw monthly index. <em>(surfaced via search; evaluate over coming weeks)</em></li>
 </ul>
 <hr />
-<p><em>11 items · sources scanned: ~31 (Planet PostgreSQL, PostgreSQL news archive, pgsql-hackers via mail-archive.com, CommitFest PG20-1 activity log, pganalyze, thebuild.com, POSETTE, Qiita [ja], Habr [ru], modb.pro [zh], arXiv cs.DB) · international: 1 (ja) · filtered out as marketing/ads: ~6 (incl. recycled Crunchy↔Snowflake from 2025, vendor product talks). Community pulse, Research, and a ru/zh International item omitted: nothing could be confirmed inside the Jun 15–21 window without fabricating links or engagement counts.</em></p>]]></content:encoded>
+<p><em>11 items · sources scanned: ~31 (Planet PostgreSQL, PostgreSQL news archive, pgsql-hackers via mail-archive.com, CommitFest PG20-1 activity log, pganalyze, thebuild.com, POSETTE, Qiita [ja], Habr [ru], modb.pro [zh], arXiv cs.DB) · international: 1 (ja) · filtered out as marketing/ads: ~6. Community pulse, Research, and a ru/zh International item omitted: nothing could be confirmed inside the Jun 15–21 window without fabricating links or engagement counts.</em></p>]]></content:encoded>
     </item>
     <item>
       <title>DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)</title>
@@ -286,7 +286,6 @@ patches. Full network scan via the in-browser path — see the source note at th
 <ul>
 <li><strong><a href="https://habr.com/ru/companies/yandex_cloud_and_infra/articles/1040504/">Becoming <code>postgres</code> in someone else's cloud: a security crash-test of managed databases</a></strong> — a Yandex Cloud reliability lead documents two privilege-escalation vectors in managed PostgreSQL where the server runs code as <code>superuser</code> and bypasses the control-plane's restricted roles; both were found at two public cloud providers and fixed upstream and by the vendors before publication. <em>(Evgeny Efimkin · Yandex Cloud / habr.com)</em> [ru] <em>(orig: «Как стать postgres в чужом облаке: краш-тест безопасности управляемых БД»)</em></li>
 <li><strong><a href="https://habr.com/ru/companies/tantor/articles/1039680/">Why Postgres with an external OLAP engine isn't really HTAP</a></strong> — argues that bolting an external columnar engine onto Postgres (separate storage model, ETL/CDC, parquet hand-off) breaks the single-transaction-visibility property real HTAP needs, and sketches doing OLTP + analytics over shared storage inside Postgres instead. <em>(Tantor Labs · habr.com)</em> [ru] <em>(orig: «Почему PostgreSQL с внешним OLAP — это не совсем HTAP?»)</em></li>
-<li><strong><a href="https://habr.com/ru/companies/tantor/articles/1039172/">Polymorphic associations in PostgreSQL: helping the planner avoid performance cliffs</a></strong> — how the ORM-generated discriminated-FK pattern (<code>type, id</code> LEFT JOINed to every subtype) regresses, and three pgsql-hackers patches discussed in 2024–2026 that each target a different source of the regression in the optimizer. <em>(Andrei Lepikhov · Tantor / habr.com)</em> [ru] <em>(orig: «Полиморфные ссылки в PostgreSQL: помогаем СУБД избежать провалов производительности»)</em></li>
 </ul>
 <h2>Upcoming events</h2>
 <ul>
