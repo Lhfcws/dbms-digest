@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition · DBMS Digest</title>
+  <meta name="description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#0d1b2e">
+  <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-06-22.html">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="DBMS Digest" href="../feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="DBMS Digest">
+  <meta property="og:title" content="DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition">
+  <meta property="og:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-06-22.html">
+  <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition">
+  <meta name="twitter:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J18B7F5NZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3J18B7F5NZ');
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition", "description": "PostgreSQL & DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-22.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-22.html", "datePublished": "2026-06-22T12:00:00+00:00", "dateModified": "2026-06-22T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <style>
+    :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--navy); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:var(--blue); }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 20px 64px; }
+    .wrap.wide { max-width:1060px; }
+    .banner img { width:100%; height:auto; border-radius:12px; display:block; }
+    .site-title { font-size:1.6rem; margin:26px 0 8px; color:var(--ink); }
+    .intro { color:var(--mut); margin:0 0 6px; font-size:1.02rem; line-height:1.6; }
+    .sublabel { font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin:28px 0 4px; }
+    p.lead { color:var(--ink); margin:0 0 20px; }
+    .sub { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--navy);
+      font-weight:700; text-decoration:none; padding:11px 18px; border-radius:999px; }
+    .sub:active { opacity:.85; }
+    .feedurl { display:block; margin:14px 0 0; color:var(--mut); font-size:.85rem; word-break:break-all; }
+    .feedurl code { color:var(--blue); }
+    .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
+      border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
+    ul.index { list-style:none; padding:0; margin:0; }
+    ul.index li { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; border-bottom:1px solid var(--navy2); padding:13px 4px; }
+    ul.index li a.entry { display:flex; gap:12px; align-items:baseline; text-decoration:none; color:var(--ink); }
+    ul.index li a.entry:hover { color:var(--amber); }
+    .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
+    .week { color:var(--mut); }
+    .alt { color:var(--mut); font-size:.9rem; }
+    .alt a { color:var(--blue); text-decoration:none; }
+    .alt a:hover { color:var(--amber); }
+    .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
+    .backlink:hover { color:var(--amber); }
+    footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
+    footer a { color:var(--blue); }
+    .layout { display:block; }
+    nav.toc { display:none; }
+    @media (min-width:980px) {
+      .layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:44px; align-items:start; }
+      nav.toc { display:block; position:sticky; top:24px; font-size:.85rem; }
+    }
+    nav.toc .toc-title { text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; color:var(--mut); margin:0 0 10px; }
+    nav.toc ul { list-style:none; padding:0; margin:0; }
+    nav.toc li { margin:2px 0; border:0; }
+    nav.toc a { display:block; padding:4px 10px; color:var(--mut); text-decoration:none;
+      border-left:2px solid var(--navy2); line-height:1.35; }
+    nav.toc a:hover { color:var(--amber); border-left-color:var(--amber); }
+    .prose h1 { font-size:1.5rem; line-height:1.25; margin:8px 0 18px; color:var(--ink); }
+    .prose h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+      border-top:1px solid var(--navy2); padding-top:22px; margin:34px 0 12px; scroll-margin-top:20px; }
+    .prose p { margin:.5em 0 1em; }
+    .prose ul { padding-left:1.2em; margin:.4em 0 1.2em; }
+    .prose li { margin:.5em 0; }
+    .prose li::marker { color:var(--mut); }
+    .prose a { text-decoration:none; border-bottom:1px solid transparent; }
+    .prose a:hover { color:var(--amber); border-bottom-color:var(--amber); }
+    .prose strong { color:var(--ink); }
+    .prose em { color:var(--mut); }
+    .prose code { background:var(--navy2); color:#cfe0f5; padding:1px 5px; border-radius:4px; font-size:.92em; }
+    .prose hr { border:0; border-top:1px solid var(--navy2); margin:28px 0; }
+    .prose blockquote { margin:1em 0; padding:.4em 1em; border-left:3px solid var(--amber); color:var(--mut); }
+</style>
+</head>
+<body>
+  <div class="wrap wide">
+    <a class="backlink" href="../index.html">← All digests</a>
+    <div class="layout">
+    <nav class="toc"><p class="toc-title">Sections</p>
+      <ul>
+        <li><a href="#postgresql">PostgreSQL</a></li>
+        <li><a href="#postgresql-mailing-lists-whats-being-designed">PostgreSQL mailing lists (what&#x27;s being designed)</a></li>
+        <li><a href="#commitfest-pg20-1-59-collection-phase">CommitFest (PG20-1, #59 — collection phase)</a></li>
+        <li><a href="#wider-dbms-distributed-data">Wider DBMS &amp;amp; distributed data</a></li>
+        <li><a href="#research-cutting-edge">Research &amp;amp; cutting edge</a></li>
+        <li><a href="#community-pulse">Community pulse</a></li>
+        <li><a href="#international-non-english-sources">International (non-English sources)</a></li>
+        <li><a href="#conferences-cfp">Conferences &amp;amp; CFP</a></li>
+      </ul>
+    </nav>
+      <article class="prose">
+<h1 id="dbms-weekly-2026-06-22-week-of-2026-06-222026-06-28-fable-edition">DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition</h1>
+<p><em>Regenerated edition of <a href="2026-06-22.md">2026-06-22</a>, produced by Claude Fable 5 from a full
+independent rescan of the window (in-browser fetch path; every item below re-verified against
+its primary source on 2026-07-02).</em></p>
+<p><em>PG19 sits in beta (Beta 1: Jun 4); master is in beta-hardening mode while the PG20-1
+CommitFest (collection phase, Jul 1–31) accumulates next cycle's patches.</em></p>
+<h2 id="postgresql">PostgreSQL</h2>
+<ul>
+<li><strong><a href="https://github.com/postgres/postgres/commit/2af70e9">SQL-callable DDL reconstruction keeps landing</a></strong> — the <code>pg_get_*_ddl()</code> family (in-core replacement for "shell out to <code>pg_dump</code> to get a CREATE statement") got two fix-up commits this week: Tom Lane <a href="https://github.com/postgres/postgres/commit/2af70e9">corrected the variadic declarations</a>, Andrew Dunstan <a href="https://github.com/postgres/postgres/commit/d6ed87d">switched the option arguments to named booleans</a>; the companion hackers thread "[PATCH] Add pg_get_table_ddl()" drew ~10 messages. <code>[committed]</code></li>
+<li><strong><a href="https://github.com/postgres/postgres/commit/0cd17fd">Inherited CHECK constraints can no longer be silently weakened</a></strong> — a child table could relax an inherited CHECK, breaking the parent's advertised invariant across the hierarchy; fixed Jun 27 with two follow-up doc commits clarifying <code>ALTER CONSTRAINT</code> and inherited-constraint behavior. <em>(Andrew Dunstan)</em> <code>[committed]</code></li>
+<li><strong><a href="https://github.com/postgres/postgres/commit/effb923">COPY TO (FORMAT json) now respects the column list's order</a></strong> — <code>COPY t (b, a) TO … (FORMAT json)</code> emits keys in the requested order, matching text/CSV semantics. <em>(Andrew Dunstan)</em> <code>[committed]</code></li>
+<li><strong><a href="https://github.com/postgres/postgres/commit/a272a58">Two beta fixes for temporal <code>FOR PORTION OF</code></a></strong> — the volatility check on SQL:2011 period bounds <a href="https://github.com/postgres/postgres/commit/a272a58">moved into the planner</a>, and <a href="https://github.com/postgres/postgres/commit/a40fdf6">foreign-table child partitions are now rejected</a> under <code>FOR PORTION OF</code>. <em>(Peter Eisentraut)</em> <code>[committed]</code></li>
+<li><strong><a href="https://github.com/postgres/postgres/commit/cdae794"><code>MERGE</code>/<code>SPLIT PARTITION</code> honors <code>default_tablespace</code></a></strong> — partition reshaping no longer quietly places the result on the wrong tablespace. <em>(Alexander Korotkov)</em> <code>[committed]</code></li>
+<li><strong><a href="https://github.com/postgres/postgres/commit/6468f7a">UUID week</a></strong> — the <code>uuid</code>→<code>bytea</code> cast is now <a href="https://github.com/postgres/postgres/commit/6468f7a">leakproof</a> (quals using it can be pushed below RLS/security-barrier views), while the CommitFest collected SIMD-accelerated UUID parsing, <code>MIN</code>/<code>MAX</code> aggregates for <code>uuid</code>, <code>UUIDv6</code> support in <code>uuid_extract_timestamp()</code>, and a fix for <code>uuidv7</code> accepting pre-1970 dates. <em>(Masahiko Sawada + CF)</em> <code>[committed + patches]</code></li>
+<li><strong><a href="https://github.com/postgres/postgres/commit/4abf411"><code>pg_stat_io</code> stops misattributing autovacuum-launcher extends</a></strong> — relation extends by the launcher were being counted like a worker's, skewing per-backend-type I/O stats. <em>(Melanie Plageman)</em> <code>[committed]</code></li>
+<li><strong>Beta-hardening grab-bag</strong> — <a href="https://github.com/postgres/postgres/commit/dac3660">out-of-bounds read in the autoprewarm worker</a> <em>(Tomas Vondra)</em>; <a href="https://github.com/postgres/postgres/commit/a4f02ca">correctness pass over the online data-checksums worker</a> <em>(Heikki Linnakangas)</em>; <a href="https://github.com/postgres/postgres/commit/ef01ca6">unsafe order of operations in <code>ResourceOwnerReleaseAll()</code></a> and a <a href="https://github.com/postgres/postgres/commit/7f5e0b2">null-pointer crash in the ECPG compiler</a> <em>(Tom Lane)</em>; <a href="https://github.com/postgres/postgres/commit/b43f8aa">ModifyTable FDW arrays re-indexed when pruning result relations</a> — the BUG #19484 segfault <em>(Amit Langote)</em>; <a href="https://github.com/postgres/postgres/commit/4df5fe3"><code>\crosstabview</code> honors <code>\pset</code> boolean/null display</a> <em>(Álvaro Herrera)</em>; <a href="https://github.com/postgres/postgres/commit/b574fec">collation-lookup failure avoided for <code>"char"</code> columns</a> <em>(Tom Lane)</em>. <code>[committed]</code></li>
+</ul>
+<h3 id="reading-from-planet-postgresql">Reading from Planet PostgreSQL</h3>
+<ul>
+<li><strong><a href="https://vondra.me/posts/some-more-thoughts-on-random-page-cost/">Some more thoughts on random_page_cost</a></strong> — Tomas Vondra (Jun 23) keeps pulling on the thread from his POSETTE talk: the 4.0 default encodes spinning-rust assumptions that NVMe has made wrong, and "lower it to 1.1" folklore isn't a measurement either. <em>(Tomas Vondra)</em></li>
+<li><strong><a href="https://postgr.es/p/9nx">Same rows, different SUM</a></strong> — Radim Marek sums the same 5M-row <code>float8</code> column three times and gets three answers: parallel aggregation + floating-point non-associativity, cleanly demonstrated. <em>(Radim Marek · boringsql)</em></li>
+<li><strong><a href="https://postgr.es/p/9nu">Stop Punishing Your Postgres for a Crash That Won't Happen</a></strong> — Lætitia Avrot on why a short <code>checkpoint_timeout</code> buys almost no recovery time but costs steady-state performance every second. <em>(Lætitia Avrot)</em></li>
+<li><strong><a href="https://postgr.es/p/9nk">Heterogeneous Graphs in SQL/PGQ on PostgreSQL 19</a></strong> — Hans-Jürgen Schönig exercises PG19's <code>GRAPH_TABLE</code> over multi-label vertex/edge sets. <em>(Cybertec)</em></li>
+<li><strong><a href="https://richyen.com/postgres/2026/06/22/pg_stats_how_postgres_internal_stats_work.html">pg_stats: How Postgres Internal Stats Work</a></strong> — Richard Yen (Jun 22) on the statistics behind seq-scan-vs-index-scan decisions. <em>(Richard Yen)</em></li>
+<li><strong><a href="https://postgr.es/p/9nv">All Your GUCs in a Row</a></strong> — Christophe Pettus's near-daily GUC series worked through the planner's <code>enable_*</code> knobs this week (<code>enable_hashjoin</code>, <code>enable_hashagg</code>, <code>enable_gathermerge</code>, <code>enable_distinct_reordering</code>/<code>enable_group_by_reordering</code>). <em>(Christophe Pettus · thebuild.com)</em></li>
+<li><strong><a href="https://postgr.es/p/9nr">coddpiece: Watch Relational Algebra Become SQL</a></strong> — also from Pettus: a small teaching tool that renders relational-algebra expressions as executable SQL; nice pedagogy for anyone explaining the model behind the syntax. <em>(Christophe Pettus)</em></li>
+<li><strong><a href="https://postgr.es/p/9nw">Armchair Transit with PostGIS: The Census &amp; The Bestagons</a></strong> — Rhys Stewart builds hexagonal-grid transit analysis in PostGIS; a fun H3-adjacent workout. <em>(Rhys Stewart)</em></li>
+</ul>
+<h3 id="ai-meets-the-project">AI meets the project</h3>
+<ul>
+<li><strong><a href="https://postgr.es/p/9nn">Why PostgreSQL needs an AI usage policy</a></strong> — Jan Wieremjewicz argues the project should set explicit norms for AI-generated contributions; it lands alongside the week's "<strong>The PostgreSQL C Dialect</strong>" hackers thread (16 messages) on codifying the C subset the tree actually uses — partly so both humans and tools stop guessing. <em>(Percona; pgsql-hackers)</em></li>
+</ul>
+<h3 id="ecosystem-releases">Ecosystem releases</h3>
+<ul>
+<li><strong><a href="https://www.postgresql.org/about/news/pgtt-v45-has-been-released-3330/">pgtt v4.5</a></strong> — Global Temporary Tables extension update (Jun 28), timely while the in-core GTT patch sits in the CommitFest. <em>(HexaCluster)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/ivorysql-54-released-based-on-postgresql-184-with-ai-skills-3323/">IvorySQL 5.4</a></strong> — the Oracle-compatible fork rebases onto PostgreSQL 18.4. <em>(Highgo)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/new-postgres-language-server-postgres-lsp-3322/">postgres-lsp</a></strong> — Language Server for SQL/PL-pgSQL on tree-sitter-postgres; announced Jun 21, one day pre-window but too useful to skip. <em>(Gavin M. Roy)</em> <code>[just pre-window]</code></li>
+</ul>
+<h2 id="postgresql-mailing-lists-whats-being-designed">PostgreSQL mailing lists (what's being designed)</h2>
+<p>Full <a href="https://www.postgresql.org/list/pgsql-hackers/2026-06/">pgsql-hackers</a> rescan, Jun 22–28 (~830 messages, ~330 threads):</p>
+<ul>
+<li><strong>Conflict log history table for Logical Replication</strong> — the week's biggest design discussion (~45 messages): let a subscription persist apply-time conflicts to a system-managed table instead of only the server log; PG20-targeted. <em>(Amit Kapila, Peter Smith, Nisha Moond, Dilip Kumar et al.)</em></li>
+<li><strong>Handle concurrent drop when doing whole-database VACUUM</strong> — second-busiest thread (~25 messages), on <code>VACUUM</code>'s race with concurrent relation drops. <em>[missed by the original edition]</em></li>
+<li><strong>Sequences meet logical replication</strong> — two active threads: <code>EXCEPT for ALL SEQUENCES</code> publications (~10 msgs) and teaching <code>pg_createsubscriber</code> to include sequences (~8 msgs).</li>
+<li><strong>A lost wakeup inside LockBuffer</strong> — <code>048_vacuum_horizon_floor.pl</code> hangs traced to a missed wakeup (~10 msgs); the kind of bug that ages you.</li>
+<li><strong>Row pattern recognition</strong> — the SQL:2016 <code>MATCH_RECOGNIZE</code> thread keeps grinding forward (~18 msgs).</li>
+<li><strong>GSoC 2026: B-tree index bloat reduction</strong> — a student-driven design discussion drawing real committer engagement (~10 msgs).</li>
+</ul>
+<h2 id="commitfest-pg20-1-59-collection-phase">CommitFest (PG20-1, #59 — collection phase)</h2>
+<p>In-window flow (verified from the activity log): <strong>committed</strong> — CHECK-constraint enforceability recursion, <code>\crosstabview</code> display settings, <code>bytea(uuid)</code> leakproof, BUG #19484 FDW segfault; <strong>withdrawn</strong> — <code>uuidv7(interval)</code> underflow guard, a pgbench <code>--continue-on-error</code> doc patch. <strong>Notable new records:</strong> <a href="https://commitfest.postgresql.org/59/">reorder-buffer spill O(N²)→O(N) during vacuum storms</a>, SIMD UUID parsing, <code>MIN</code>/<code>MAX</code> for <code>uuid</code>, <code>ON EMPTY</code> for aggregate/window functions, an <code>ANALYZE</code> sample-rows hook for extensions, an <code>enable_groupagg</code> GUC, and a statistics view tracking deprecated-feature usage.</p>
+<h2 id="wider-dbms-distributed-data">Wider DBMS &amp; distributed data</h2>
+<ul>
+<li><strong><a href="https://github.com/ClickHouse/ClickHouse/releases/tag/v26.6.1.1193-stable">ClickHouse 26.6</a></strong> (Jun 25) — <strong>continuous queries</strong> over MergeTree (periodic snapshot reads as a first step toward streaming), <strong><code>EXPLAIN WHATIF</code></strong> (estimate a hypothetical skip index's benefit before building it), and experimental <strong>multi-stage distributed execution</strong> with scatter/broadcast/gather/shuffle exchanges — distributed hash joins and shuffle aggregation on the way. <code>[release notes verified on GitHub]</code></li>
+<li><strong><a href="https://github.com/timescale/timescaledb/releases/tag/2.28.1">TimescaleDB 2.28.1</a></strong> (Jun 23) — maintenance release of the Postgres time-series extension.</li>
+<li><strong><a href="https://news.ycombinator.com/item?id=48702848">WAL-RUS: a Rust rewrite of WAL-G</a></strong> — from-scratch Rust reimplementation of the WAL-G backup tool; 132 pts on HN. <em>(ClickHouse blog)</em></li>
+</ul>
+<h2 id="research-cutting-edge">Research &amp; cutting edge</h2>
+<ul>
+<li><strong><a href="https://arxiv.org/abs/2606.27979">DiStash: A Disaggregated Multi-Stash Transactional Key-Value Store</a></strong> — transactional KV designed for compute/storage-disaggregated hardware. <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.27051">BtrLog: Low-Latency Logging for Cloud Database Systems</a></strong> — cutting tail latency on the cloud-DB write path; WAL-adjacent reading. <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.25409">CV-Rules: Serializability Verification of Concurrency Control Protocols</a></strong> — machine-checkable serializability arguments for CC protocols. <em>[paper · missed by the original edition]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.26385">Query Cost Model Calibration in Confidential Virtual Machines</a></strong> — planner cost constants drift inside TEEs/CVMs; directly relevant to anyone running Postgres in confidential compute. <em>[paper · missed by the original edition]</em></li>
+</ul>
+<h2 id="community-pulse">Community pulse</h2>
+<ul>
+<li><strong><a href="https://news.ycombinator.com/item?id=48634787">British Columbia, Time Zones, and Postgres</a></strong> — 143 pts / 112 comments; a jurisdiction changes its time-zone rules and <code>timestamptz</code> handling becomes everyone's problem. <em>(Crunchy Data)</em></li>
+<li><strong><a href="https://news.ycombinator.com/item?id=48666433">PostgreSQL is enough (2024)</a></strong> — 122 pts / 90 comments; the perennial "just use Postgres" thesis, re-litigated with fresh anecdotes.</li>
+<li><strong><a href="https://news.ycombinator.com/item?id=48662988">Show HN: DBOSify — drop-in Temporal replacement built on Postgres</a></strong> — 91 pts; durable workflow execution with Postgres as the only backend.</li>
+</ul>
+<h2 id="international-non-english-sources">International (non-English sources)</h2>
+<ul>
+<li><strong><a href="https://habr.com/ru/companies/nexign/articles/1052014/">Range types in PostgreSQL: speeding up queries</a></strong> <code>[ru]</code> — range types + GiST for cheap overlap/containment queries. <em>(Nexign · Habr)</em></li>
+<li><strong><a href="https://habr.com/ru/articles/1051692/">Lessons about deadlocks, again</a></strong> <code>[ru]</code> — a production deadlock post-mortem; lock ordering strikes again. <em>(Habr)</em></li>
+<li><strong><a href="https://habr.com/ru/articles/1051760/">From ETL to CDC: real-time analytics on PostgreSQL, Kafka and ClickHouse</a></strong> <code>[ru]</code> — architecture walk-through, part 1. <em>(Habr)</em></li>
+<li><strong><a href="https://habr.com/ru/articles/1051910/">Greengage major upgrades with pg_upgrade/ggupgrade</a></strong> and <strong><a href="https://habr.com/ru/articles/1051918/">ggrebalance, part 1: Shrink</a></strong> <code>[ru]</code> — MPP-on-Postgres operational internals from the Greenplum lineage. <em>(Greengage)</em></li>
+<li><strong><a href="https://blog.dalibo.com/2026/06/25/plugin-pgbackrest.html">pgBackRest plugin for CloudNativePG</a></strong> <code>[fr]</code> — wiring pgBackRest into CNPG as a backup plugin, with a companion piece on <a href="https://blog.dalibo.com/2026/06/25/pgbackrest_communautaire.html">pgBackRest as a community answer</a>. <em>(Dalibo)</em></li>
+</ul>
+<h2 id="conferences-cfp">Conferences &amp; CFP</h2>
+<ul>
+<li><strong><a href="https://www.postgresql.org/about/news/pgdayuk-2026-schedule-up-registration-open-3333/">PGDay.UK 2026</a></strong> — Sep 8, London; schedule up, registration open.</li>
+<li><strong><a href="https://blog.dalibo.com/2026/06/23/pgsession19_cfp.html">PGSession 19</a></strong> — Jan 2027, Paris; CFP open. <em>(Dalibo)</em></li>
+</ul>
+<hr />
+<p><em>~28 items · sources scanned: Planet PostgreSQL (RSS + rolled-off items re-verified via short links), postgres git master via GitHub API (41 commits, full window), pgsql-hackers (~830 messages / ~330 threads across the window), CommitFest PG20-1 state, postgresql.org news archive, GitHub Releases API (9 engines), arXiv cs.DB (export API), HN Algolia (8 queries), Habr PostgreSQL hub [ru], Dalibo [fr] · filtered out as marketing/promotion: ~7 · out-of-window items excluded.</em></p>
+<p><em>Fable note: this edition independently confirms every load-bearing claim of the original and adds four items it missed (the whole-database-VACUUM thread, CV-Rules, cost-model calibration in CVMs, coddpiece). One correction: the original credited the "PostgreSQL is enough" HN thread with 121 points and WAL-RUS with 128 — both had drifted upward by re-scan time (122/132); treat HN point counts as snapshots, not facts.</em></p>
+      </article>
+    </div>
+    <footer>
+      <a href="../index.html">← All digests</a> ·
+      <a href="../feed.xml">RSS feed</a> ·
+      <a href="https://github.com/danolivo/dbms-digest/blob/main/digests/2026-06-22-fable.md">View source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

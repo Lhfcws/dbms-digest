@@ -52,6 +52,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DIGESTS = ROOT / "digests"
 DOCS = ROOT / "docs"
 DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})\.md$")
+VARIANT_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})-([A-Za-z0-9]+)\.md$")  # e.g. 2026-06-22-fable.md
 
 CSS = """
     :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
@@ -75,11 +76,14 @@ CSS = """
     .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
       border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
     ul.index { list-style:none; padding:0; margin:0; }
-    ul.index li { border-bottom:1px solid var(--navy2); }
-    ul.index li a { display:flex; gap:12px; align-items:baseline; padding:13px 4px; text-decoration:none; color:var(--ink); }
-    ul.index li a:hover { color:var(--amber); }
+    ul.index li { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; border-bottom:1px solid var(--navy2); padding:13px 4px; }
+    ul.index li a.entry { display:flex; gap:12px; align-items:baseline; text-decoration:none; color:var(--ink); }
+    ul.index li a.entry:hover { color:var(--amber); }
     .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
     .week { color:var(--mut); }
+    .alt { color:var(--mut); font-size:.9rem; }
+    .alt a { color:var(--blue); text-decoration:none; }
+    .alt a:hover { color:var(--amber); }
     .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
     .backlink:hover { color:var(--amber); }
     footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
@@ -122,6 +126,22 @@ def digest_files() -> list[tuple[dt.date, Path]]:
         items.append((dt.date(int(m[1]), int(m[2]), int(m[3])), p))
     items.sort(key=lambda t: t[0], reverse=True)
     return items
+
+
+def variant_files() -> list[tuple[dt.date, str, Path]]:
+    """Alternative renderings of a week, e.g. digests/2026-06-22-fable.md.
+    Rendered as their own pages and linked as '(alt: …)' beside the week; kept out of the feed."""
+    out = []
+    for p in DIGESTS.glob("*.md"):
+        m = VARIANT_RE.match(p.name)
+        if m:
+            out.append((dt.date(int(m[1]), int(m[2]), int(m[3])), m[4], p))
+    out.sort(key=lambda t: (t[0], t[1]), reverse=True)
+    return out
+
+
+def href_for(path: Path) -> str:
+    return f"digests/{path.stem}.html"
 
 
 def title_of(text: str, monday: dt.date) -> str:
@@ -312,15 +332,25 @@ def build_feed(items: list[tuple[dt.date, Path]]) -> str:
     return "\n".join(parts)
 
 
-def build_index(items: list[tuple[dt.date, Path]]) -> str:
+def build_index(items: list[tuple[dt.date, Path]],
+                variants: list[tuple[dt.date, str, Path]]) -> str:
+    vby: dict[dt.date, list[tuple[str, Path]]] = {}
+    for monday, name, path in variants:
+        vby.setdefault(monday, []).append((name, path))
     rows = []
     for monday, path in items:
         sunday = monday + dt.timedelta(days=6)
         label = f"week of {monday:%b %-d}–{sunday:%b %-d}, {sunday:%Y}"
+        alt = ""
+        alts = sorted(vby.get(monday, []), key=lambda t: t[0])
+        if alts:
+            links = ", ".join(
+                f'<a href="{href_for(p)}">{html.escape(n)}</a>' for n, p in alts)
+            alt = f' <span class="alt">(alt: {links})</span>'
         rows.append(
-            f'      <li><a href="{page_rel(monday)}">'
+            f'      <li><a class="entry" href="{page_rel(monday)}">'
             f"<span class=\"date\">{monday:%Y-%m-%d}</span> "
-            f"<span class=\"week\">{html.escape(label)}</span></a></li>")
+            f"<span class=\"week\">{html.escape(label)}</span></a>{alt}</li>")
     listing = "\n".join(rows) if rows else "      <li>No digests yet.</li>"
     blog_posts = [{"@type": "BlogPosting", "headline": title_of(p.read_text(encoding="utf-8"), m),
                    "url": f"{SITE}/{page_rel(m)}", "datePublished": iso_noon(m)}
@@ -387,13 +417,17 @@ def build_sitemap(items: list[tuple[dt.date, Path]]) -> str:
 
 def main() -> None:
     items = digest_files()
+    variants = variant_files()
     DOCS.mkdir(exist_ok=True)
     (DOCS / "digests").mkdir(exist_ok=True)
-    (DOCS / "feed.xml").write_text(build_feed(items), encoding="utf-8")
-    (DOCS / "index.html").write_text(build_index(items), encoding="utf-8")
+    (DOCS / "feed.xml").write_text(build_feed(items), encoding="utf-8")  # primary weeks only
+    (DOCS / "index.html").write_text(build_index(items, variants), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
     for monday, path in items:
         (DOCS / page_rel(monday)).write_text(build_digest_page(monday, path), encoding="utf-8")
+    for monday, _name, path in variants:  # alternative renderings get their own page
+        (DOCS / "digests" / f"{path.stem}.html").write_text(
+            build_digest_page(monday, path), encoding="utf-8")
 
     # SEO / discovery assets
     (DOCS / "sitemap.xml").write_text(build_sitemap(items), encoding="utf-8")
