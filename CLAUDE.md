@@ -22,6 +22,12 @@ Whenever you open this project (in Cowork or Claude Code), run the following rou
    exact Monday→Sunday window. Follow the skill in full — gather, scan the community sources for the **Community pulse**, discover sources, filter out
    marketing, fact-check — and write the result to `digests/<Monday>.md`. Generate oldest-first.
 
+3b. **Verify enhanced items.** If the skill enhanced any existing item's description
+    (as opposed to writing a digest from scratch), spot-check 3 items: pick a release
+    item, a paper item, and a community pulse item. For each, fetch the primary source
+    (changelog URL, arXiv abstract, HN Algolia story) and verify that the added details
+    match. If any do not, revert to the pre-enhancement text or fix the claim.
+
 4. **Update the index.** Add a link to each new digest in the `## Digests` section of
    `README.md`, newest first: `- [YYYY-MM-DD — week of …](digests/YYYY-MM-DD.md)`.
 

@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Jul 2026 10:21:09 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 10:28:51 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28)</title>
@@ -181,7 +181,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <h2>Community pulse</h2>
 <ul>
 <li><strong><a href="https://news.ycombinator.com/item?id=48476466">PgDog is funded and coming to a database near you</a></strong> — a funding post for a Rust connection-pooler/sharder for Postgres became the week's biggest DB thread; the substance is the 261-comment debate over whether sharding belongs in a proxy and how it compares to PgBouncer / PgCat / Citus. <em>(Hacker News · 548 pts, 261 comments)</em></li>
-<li><strong><a href="https://news.ycombinator.com/item?id=48478148">Show HN: HelixDB — a graph database built on object storage</a></strong> — an OLTP graph DB on S3 with native vector + FTS drew a long back-and-forth on the latency trade-offs of running transactions against cold object storage. <em>(Hacker News · 158 pts, 46 comments)</em></li>
+<li><strong><a href="https://news.ycombinator.com/item?id=48478148">Show HN: HelixDB — a graph database built on object storage</a></strong> — an OLTP graph DB on S3 with native vector + FTS drew a long back-and-forth on the latency trade-offs of running transactions against cold object storage. <em>(Hacker News · 159 pts, 46 comments)</em></li>
 <li><strong><a href="https://news.ycombinator.com/item?id=48444784">Spanish traders set the standard for GnuCash database design</a></strong> — an essay on how centuries-old double-entry bookkeeping prefigured GnuCash's schema turned into an 82-comment thread on modelling money in a relational database. <em>(Hacker News · 133 pts, 82 comments)</em></li>
 </ul>
 <h2>Wider DBMS &amp; distributed data</h2>

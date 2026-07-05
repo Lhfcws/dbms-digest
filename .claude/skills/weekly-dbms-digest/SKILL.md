@@ -96,9 +96,46 @@ This is the core value of the digest. **Exclude** an item (or flag it clearly if
 
 **Migration experience.** Actively look for real-world migration experience reports — moving to/from Postgres, Oracle→Postgres, MySQL→Postgres, cross-cloud, version upgrades at scale — where the author shares what actually happened (pitfalls, downtime, data discrepancies, tooling, rollback). These are high-value; prioritise them. Generic "why you should migrate to our product" posts are marketing — cut them.
 
-### 7. Fact-check before including
+**Editing guardrail.** The filtering step above tells you what to *remove*. When you
+later edit an item's description -- tightening prose, fixing a stale HN point count,
+adding detail that was missing -- you must apply the same evidence bar as filtering:
+every factual change must be backed by the primary source. Check these high-risk
+claim types especially:
 
-For each surviving item, do a quick sanity pass: does the headline claim match the body? Are benchmark claims accompanied by setup details (hardware, dataset, versions)? Is a technical claim actually in a release/commit, or just speculation? Cross-check surprising claims against a second source (commit, the actual paper). If a claim can't be substantiated, either drop the item or append a short `[unverified]` note so the reader knows.
+| If you are adding...          | You must have fetched...                                 |
+|-------------------------------|----------------------------------------------------------|
+| A feature name or bug fix     | The release notes / changelog at the linked URL          |
+| A technical description       | The abstract, commit message, or body of the linked page |
+| A date ("Jun 27", "Jan 13")   | The primary source's own date field or header            |
+| A message count ("~10 msgs")  | The archive page for that thread on the relevant days    |
+| A conference detail           | The CFP page or official announcement                    |
+| An HN score                   | The Algolia API for that story ID                        |
+
+If a link is broken, an API is blocked, or a page is behind auth, the constraint
+is: **do not add the claim.** A short honest item is better than a detailed one
+whose details you invented. There is no shame in leaving a terse description terse.
+
+### 7. Fact-check -- before including AND before enhancing
+
+This step fires twice per item: once when you are deciding whether to keep it,
+and again when you are editing its description. The rule is the same both times:
+**do not add a factual claim whose source you have not fetched.**
+
+**When you enhance a terse description** (add detail beyond what the original text says),
+fetch the primary source first -- the release notes, the arXiv abstract, the commit
+message at the linked hash, the conference CFP page. Read it. Then write your
+enhancement so that every specific claim (feature names, bug descriptions, dates,
+message counts, conference details) is directly traceable to that fetched source.
+
+**Do not guess.** If the release notes are behind a link you cannot reach, keep the
+item terse. An honest one-liner beats a detailed fabrication.
+
+For each surviving item, do a quick sanity pass: does the headline claim match the body?
+Are benchmark claims accompanied by setup details (hardware, dataset, versions)?
+Is a technical claim actually in a release/commit, or just speculation?
+Cross-check surprising claims against a second source (commit, the actual paper).
+If a claim can't be substantiated, either drop the item or append a short `[unverified]`
+note so the reader knows.
 
 ### 8. Write the digest
 
@@ -156,6 +193,7 @@ _<N> items · sources scanned: <count> · filtered out as marketing/ads: <count>
 
 Notes on the format:
 - **The headline is the link** (`**[Headline](URL)**`) — one big tap target, ideal on a phone; do not add a trailing `[link]`. The one-liner says *why a database internals developer should care*, not just what it is.
+- **Every factual claim in the description must be from a source you fetched, not from your training data.** The reader assumes you checked the link. Live up to that. If you are adding detail to a pre-existing item, fetch the primary source before you type the new sentence. Never backfill from domain knowledge alone.
 - **End each item with the author/source in italics**, e.g. `*(Andy Pavlo · CMU DB Group)*`. Include the author's name when it isn't already in the one-liner; otherwise just the source/site (or venue, for papers). On a phone this lets the reader triage before tapping.
 - Append `[paper]`, `[unverified]`, `[by committer]`, `[vendor blog — substantive]`, or a language tag (`[zh]`) only when useful.
 - **Non-English items go in their own `## International` section** (don't scatter them across the topical sections). Each gets an English headline + one-liner, a language tag (`[zh]`), and the original title in italics in parentheses — e.g. `- **[Inside PolarDB's shared-storage buffer pool](URL)** — how it decouples buffer management from local disk. *(Alibaba Cloud · developer.aliyun.com)* [zh] _(orig: …)_`. Verify technical claims against the original, not just the translation. Currently active non-English sources are Chinese; other languages can be re-added as new sources are discovered. For Chinese, `modb.pro` renders via the browser (`cn.pingcap.com` times out on idle); it's PR-heavy, so mine the research / internals items (OceanBase, TiDB, PolarDB) and drop vendor PR.
@@ -187,6 +225,13 @@ Notes on the format:
 `- "Acme DB raises $40M Series B to revolutionize the cloud-native AI-ready database" — funding announcement, no technical content. (excluded)`
 
 `- "How do I speed up my query?" — routine user question with no surprising answer. (excluded)`
+
+**Fabrication (the worst kind of wrong -- never do this):**
+`- **[Barman 3.18.0](URL)** — brings incremental WAL-file recovery and fixes for parallel backup consistency.` *(The release notes say nothing about either. This was invented by the model because "Barman is a backup tool, so it probably does WAL recovery and parallel backups." Never fill gaps from domain priors.)*
+
+`- **[TimescaleDB 2.28.1](URL)** — maintenance release with hypertable chunking improvements and compression bug fixes.` *(The actual release notes list 10 specific bug fixes, none about chunking or compression. "Hypertable" and "compression" came from knowing what TimescaleDB is, not from reading the notes.)*
+
+`- **Reorder buffer spill O(N^2)->O(N) during vacuum storms** (URL to CF page) — a logical-decoding patch landed in the CommitFest.` *(The item does not exist. The commitfest page, the activity log, and the mailing list archives were searched exhaustively and contain no such patch. This was entirely invented.)*
 
 ## Keeping the skill healthy
 
