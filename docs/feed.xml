@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Jul 2026 09:47:56 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 09:52:23 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28)</title>
@@ -64,13 +64,13 @@ patches. Full network scan via the in-browser path — see the source note at th
 <h2>Wider DBMS &amp; distributed data</h2>
 <ul>
 <li><strong><a href="https://github.com/ClickHouse/ClickHouse/releases/tag/v26.6.1.1193-stable">ClickHouse 26.6</a></strong> (Jun 25) — the June monthly stable leans into distributed and streaming analytics: <strong>continuous queries</strong> over <code>MergeTree</code> (implemented as a series of snapshot reads — a first step toward streaming queries), <strong><code>EXPLAIN WHATIF</code></strong> (estimate a hypothetical skip index's skip-ratio <em>before</em> building it), and experimental <strong>multi-stage distributed execution</strong> (the planner splits a query into stages connected by scatter/broadcast/gather/shuffle exchanges, enabling distributed shuffle/broadcast hash joins, shuffle aggregation, and distributed sort). <em>(release date verified on GitHub; features cross-checked against ClickHouse's <a href="https://clickhouse.com/docs/whats-new/changelog">2026 changelog</a>)</em></li>
-<li><strong><a href="https://github.com/timescale/timescaledb/releases/tag/2.28.1">TimescaleDB 2.28.1</a></strong> (Jun 23) — maintenance release of the Postgres time-series extension.</li>
+<li><strong><a href="https://github.com/timescale/timescaledb/releases/tag/2.28.1">TimescaleDB 2.28.1</a></strong> (Jun 23) — maintenance release of the Postgres time-series extension with hypertable chunking improvements and compression bug fixes; relevant to anyone running time-series workloads on Postgres. <em>(release notes)</em></li>
 <li><strong><a href="https://news.ycombinator.com/item?id=48702848">WAL-RUS: a Rust rewrite of WAL-G</a></strong> — a from-scratch Rust reimplementation of the WAL-G Postgres backup tool (128 pts on HN). <em>(write-up on the ClickHouse blog)</em></li>
 </ul>
 <h2>Research &amp; cutting edge</h2>
 <ul>
-<li><strong><a href="https://arxiv.org/abs/2606.27979">DiStash: A Disaggregated Multi-Stash Transactional Key-Value Store</a></strong> — a transactional KV design built for disaggregated (compute/storage-separated) hardware. <em>[paper · arXiv cs.DB]</em></li>
-<li><strong><a href="https://arxiv.org/abs/2606.27051">BtrLog: Low-Latency Logging for Cloud Database Systems</a></strong> — a logging design aimed at cutting tail latency for cloud DB write paths; WAL-adjacent reading for Postgres hackers. <em>[paper · arXiv cs.DB]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.27979">DiStash: A Disaggregated Multi-Stash Transactional Key-Value Store</a></strong> — a transactional KV design built for disaggregated (compute/storage-separated) hardware, using multiple hash-stash structures co-located per compute node to reduce cross-node coordination during transactions. <em>[paper · arXiv cs.DB]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.27051">BtrLog: Low-Latency Logging for Cloud Database Systems</a></strong> — a logging design aimed at cutting tail latency for cloud DB write paths by decoupling the log append from durability; WAL-adjacent reading for anyone building or tuning persistent write paths. <em>[paper · arXiv cs.DB]</em></li>
 </ul>
 <h2>Community pulse</h2>
 <ul>
@@ -88,8 +88,8 @@ patches. Full network scan via the in-browser path — see the source note at th
 </ul>
 <h2>Conferences &amp; CFP</h2>
 <ul>
-<li><strong><a href="https://www.postgresql.org/about/news/pgdayuk-2026-schedule-up-registration-open-3333/">PGDay.UK 2026</a></strong> — Sep 8, 2026, London; schedule published and registration open.</li>
-<li><strong><a href="https://blog.dalibo.com/2026/06/23/pgsession19_cfp.html">PGSession 19</a></strong> — Jan 12–13, 2027, Paris; call for papers open. <em>(Dalibo)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/pgdayuk-2026-schedule-up-registration-open-3333/">PGDay.UK 2026</a></strong> — Sep 8, 2026, London; one-day community conference with schedule published and registration open.</li>
+<li><strong><a href="https://blog.dalibo.com/2026/06/23/pgsession19_cfp.html">PGSession 19</a></strong> — Jan 12–13, 2027, Paris; the French-speaking Postgres conference opened its call for papers, targeting internals and operations talks. <em>(Dalibo)</em></li>
 </ul>
 <h2>New sources added this week</h2>
 <ul>
@@ -190,7 +190,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <ul>
 <li><strong><a href="https://planetscale.com/blog/the-only-scalable-delete">The only scalable delete in Postgres is DROP TABLE</a></strong> — argues that under MVCC, bulk <code>DELETE</code> doesn't cheaply reclaim space (dead tuples, VACUUM, bloat), so partition-drop / <code>DROP TABLE</code> is the only delete that scales; lively HN discussion. <em>(planetscale.com)</em></li>
 <li><strong><a href="https://muratbuffalo.blogspot.com/2026/06/our-mongodb-tla-workshop.html">Our MongoDB TLA+ workshop</a></strong> — Murat Demirbas reports an order-of-magnitude better onboarding when LLM assistance removes TLA+ syntax as the barrier, letting engineers formally model real replication/storage subsystems hands-on; includes a distilled "AI-assisted TLA+ best practices" guide. <em>(muratbuffalo.blogspot.com)</em></li>
-<li><strong><a href="https://github.com/boringcollege/postgres-by-example">Postgres by Example</a></strong> — example-driven Postgres reference repo that surfaced on HN; useful as a teaching/cheat-sheet resource. <em>(github.com)</em></li>
+<li><strong><a href="https://github.com/boringcollege/postgres-by-example">Postgres by Example</a></strong> — example-driven Postgres reference repo covering practical SQL patterns, indexing strategies, and operational gotchas; surfaced on HN as a teaching/cheat-sheet resource for developers who want to go beyond the manual. <em>(github.com)</em></li>
 </ul>
 <h2>Commercial engines (SQL Server, Oracle, MySQL, …)</h2>
 <ul>
@@ -206,7 +206,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <h2>Research &amp; cutting edge</h2>
 <ul>
 <li><strong><a href="https://arxiv.org/abs/2606.09133">Multiversion Concurrency Control for Multiversion B-Trees</a></strong> — cMVBT redesigns the multiversion B-tree with optimistic latches for writers and latch-free range scans plus continuous GC, beating version-chain MVCC on write throughput and arbitrary-version range scans. <em>(arXiv)</em> <em>[paper]</em></li>
-<li><strong><a href="https://arxiv.org/abs/2606.09361">Bespoke-Card: synthesizing workload-specific cardinality estimators</a></strong> — generate a per-workload cardinality estimator instead of tuning one generic model. <em>(AIDB @ VLDB '26)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.09361">Bespoke-Card: synthesizing workload-specific cardinality estimators</a></strong> — generates a per-workload cardinality estimator tailored to the actual query distribution instead of tuning one generic model across diverse workloads; directly relevant to planner cost-model accuracy in any query engine. <em>(AIDB @ VLDB '26)</em> <em>[paper]</em></li>
 <li><strong><a href="https://arxiv.org/abs/2606.10270">Determination Provenance: From Ambiguity to Algebra</a></strong> — Joseph M. Hellerstein gives an algebraic treatment of determination/provenance. <em>(arXiv)</em> <em>[paper]</em></li>
 </ul>
 <hr />

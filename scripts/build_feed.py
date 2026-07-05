@@ -240,8 +240,8 @@ def build_digest_page(monday: dt.date, path: Path) -> str:
     title = title_of(text, monday)
     sunday = monday + dt.timedelta(days=6)
     canonical = f"{SITE}/{page_rel(monday)}"
-    desc = (f"PostgreSQL & DBMS internals digest for the week of {monday:%b %-d}–"
-            f"{sunday:%b %-d, %Y}: news, mailing lists, community pulse, commercial engines, "
+    desc = (f"DBMS internals digest for the week of {monday:%b} {monday.day}–"
+            f"{sunday:%b} {sunday.day}, {sunday:%Y}: news, community pulse, commercial engines, "
             f"international sources, research, and conferences.")
     md = markdown.Markdown(extensions=["extra", "sane_lists", "toc"])
     body = md.convert(text)
@@ -340,7 +340,7 @@ def build_index(items: list[tuple[dt.date, Path]],
     rows = []
     for monday, path in items:
         sunday = monday + dt.timedelta(days=6)
-        label = f"week of {monday:%b %-d}–{sunday:%b %-d}, {sunday:%Y}"
+        label = f"week of {monday:%b} {monday.day}–{sunday:%b} {sunday.day}, {sunday:%Y}"
         alt = ""
         alts = sorted(vby.get(monday, []), key=lambda t: t[0])
         if alts:
@@ -370,7 +370,7 @@ def build_index(items: list[tuple[dt.date, Path]],
 </head>
 <body>
   <div class="wrap">
-    <div class="banner"><img src="banner.jpg" alt="{html.escape(FEED_TITLE)} — a weekly roundup for internals developers &amp; database administrators."></div>
+    <div class="banner"><img src="banner.jpg" alt="{html.escape(FEED_TITLE)} — a weekly roundup for database internals developers."></div>
 
     <h1 class="site-title">DBMS Digest — weekly database internals</h1>
     <p class="intro">A weekly, ad-free, fact-checked roundup of what actually happened in

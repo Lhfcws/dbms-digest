@@ -60,7 +60,7 @@ Pick the 3-8 threads with the most substantive discussion. **Dedupe against the 
 
 Follow `community-sources.md`'s upkeep rules every run: **discover** new active DB communities (a fresh subreddit, a Discourse forum, a public Telegram/Matrix channel) and append keepers to its Discovery log; **prune** any listed source that's been silent for ~3 months, is gone, or has turned promotional by moving it to that file's Retired log (with date + reason) so it leaves the weekly scan but isn't blindly re-added.
 
-### 3. Conferences -- open CFPs and upcoming events
+### 4. Conferences -- open CFPs and upcoming events
 
 Two date-windowed sections, each tied to **this** week so the same item never appears in two digests.
 
@@ -70,13 +70,13 @@ Give the conference, location + dates, the **CFP deadline**, and the link; tag *
 
 **Upcoming events** -- a one-month heads-up with **no repeats**: list a conference/meetup exactly once, in the digest for the week during which it **enters the 30-day horizon** -- i.e. its start date is **24-30 days after the end (Sunday) of this digest's week** (an event more than 30 days out waits for a later digest; one already <=23 days out was listed last week). For each qualifying event, open the program and pick the **1-3 talks most interesting to an internals developer** -- ideas you could implement or probe in your own engine/product (wire protocol, planner/optimizer, storage, MVCC, replication, memory, concurrency, indexing), **not** generic intro/ops talks; give speaker + a one-line "why it matters". If the program isn't posted yet, list the event and say so. If nothing enters the horizon this week, omit the section. Discover events via the Conferences & CFP trackers in `references/sources.md`.
 
-### 4. Discover emerging sources (self-update)
+### 5. Discover emerging sources (self-update)
 
 Each run, spend a little effort looking for **new, high-quality sources** that aren't yet in `references/sources.md`: a new independent engineering blog, a fresh research group page, a newly active newsletter, a conference that just posted proceedings. Good signals are: cited by sources you already trust, written by known contributors, deep technical content with no sales pitch.
 
 When you find a keeper, **append it to `references/sources.md`** under the right section with a one-line note on why it's worth watching. This is how the skill stays current instead of going stale. Conversely, if a listed source has gone dormant or turned into pure marketing, mark it accordingly.
 
-### 5. Filter out marketing, ads, and promotion
+### 6. Filter out marketing, ads, and promotion
 
 This is the core value of the digest. **Exclude** an item (or flag it clearly if it's borderline but still has real content) when it shows the hallmarks of marketing rather than engineering:
 
@@ -96,11 +96,11 @@ This is the core value of the digest. **Exclude** an item (or flag it clearly if
 
 **Migration experience.** Actively look for real-world migration experience reports — moving to/from Postgres, Oracle→Postgres, MySQL→Postgres, cross-cloud, version upgrades at scale — where the author shares what actually happened (pitfalls, downtime, data discrepancies, tooling, rollback). These are high-value; prioritise them. Generic "why you should migrate to our product" posts are marketing — cut them.
 
-### 6. Fact-check before including
+### 7. Fact-check before including
 
 For each surviving item, do a quick sanity pass: does the headline claim match the body? Are benchmark claims accompanied by setup details (hardware, dataset, versions)? Is a technical claim actually in a release/commit, or just speculation? Cross-check surprising claims against a second source (commit, the actual paper). If a claim can't be substantiated, either drop the item or append a short `[unverified]` note so the reader knows.
 
-### 7. Write the digest
+### 8. Write the digest
 
 Use the exact format below. Keep each line to roughly one sentence — the value is in being scannable. Order items by importance (most significant first), lightly grouped by theme. Aim for ~10–25 items; quality over quantity. If a slow week yields little, a short honest digest beats padding.
 
@@ -109,7 +109,7 @@ Use the exact format below. Keep each line to roughly one sentence — the value
 ```
 # DBMS Weekly — <YYYY-MM-DD> (week of <start>–<end>)
 
-## DBMS & distributed data
+## Database internals & releases
 - **[<Headline>](URL)** — <one-line why-it-matters>. *(<Author> · <source>)*
 - ...
 
@@ -117,7 +117,7 @@ Use the exact format below. Keep each line to roughly one sentence — the value
 - **[<What people were arguing about>](thread URL)** — <one line on the debate / war story / surprise and where it landed>. *(<platform> · <N pts / comments>)*
 - ...
 
-## DBMS & distributed data
+## Wider DBMS & distributed data
 - **[<Headline>](URL)** — <one line>. *(<Author> · <source>)*
 - ...
 
@@ -134,7 +134,7 @@ Use the exact format below. Keep each line to roughly one sentence — the value
 - ...
 
 ## International (non-English sources)
-- **[<English headline>](URL)** — <one-liner>. *(<Author> · <source>)* [ru] _(orig: <original title>)_
+- **[<English headline>](URL)** — <one-liner>. *(<Author> · <source>)* [zh] _(orig: <original title>)_
 - ...
 
 ## Call for papers

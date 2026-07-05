@@ -19,8 +19,7 @@ Whenever you open this project (in Cowork or Claude Code), run the following rou
 
 3. **Generate the absent digests.** For each missing week, use the **`weekly-dbms-digest`**
    skill (`.claude/skills/weekly-dbms-digest/SKILL.md`) to build that week's digest over the
-   exact Monday→Sunday window. Follow the skill in full — gather, scan the mailing lists,
-   scan the community sources for the **Community pulse**, discover sources, filter out
+   exact Monday→Sunday window. Follow the skill in full — gather, scan the community sources for the **Community pulse**, discover sources, filter out
    marketing, fact-check — and write the result to `digests/<Monday>.md`. Generate oldest-first.
 
 4. **Update the index.** Add a link to each new digest in the `## Digests` section of

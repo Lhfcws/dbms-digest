@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="pics/banner.jpg" width="100%" alt="DBMS Digest — PostgreSQL & DBMS Internals. A weekly, ad-free, fact-checked roundup of PostgreSQL & wider DBMS internals. Weekly, Mon → Sun. Signal over sales.">
+<img src="pics/banner.jpg" width="100%" alt="DBMS Digest — database internals roundup. A weekly, ad-free, fact-checked roundup of DBMS internals. Weekly, Mon → Sun. Signal over sales.">
 
 </div>
 
