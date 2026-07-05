@@ -31,13 +31,10 @@ Access tier tells you whether it can be scanned without an account:
 
 ## Forums & link aggregators
 
-- **Hacker News** — search the week's DB threads and rank by points/comments; query `postgres`,
-  `postgresql`, `database`, `sql`, `duckdb`, `clickhouse`, `sqlite`, `mysql`. Best signal-to-noise
+- **Hacker News** — search the week's DB threads and rank by points/comments; query `database`, `sql`, `duckdb`, `clickhouse`, `sqlite`, `mysql`. Best signal-to-noise
   for cross-engine debate. `[public]` (Algolia API: hn.algolia.com). P1.
 - **Lobsters — databases tag** — smaller, higher-signal than HN; good for systems/internals.
   `[public]` https://lobste.rs/t/databases . P2.
-- **r/PostgreSQL** — the main Postgres subreddit; sort Top / This Week. `[js]`
-  https://www.reddit.com/r/PostgreSQL/top/?t=week . P1.
 - **r/databasedevelopment** — DB *internals* community (storage engines, query processing);
   exactly the reader's wheelhouse. `[js]` https://www.reddit.com/r/databasedevelopment/ . P1.
 - **r/SQL** — broader SQL Q&A and discussion; filter heavily. `[js]`
@@ -51,20 +48,15 @@ Access tier tells you whether it can be scanned without an account:
 
 - **DBA Stack Exchange** — "hot this week" surfaces real operational puzzles and surprising
   answers. `[public]` https://dba.stackexchange.com/?tab=week . P2.
-- **Stack Overflow — [postgresql] / [sql]** — high volume, mostly routine; sample only for a
+- **Stack Overflow — [sql] — high volume, mostly routine; sample only for a
   question that blew up or got an authoritative answer. `[public]`
-  https://stackoverflow.com/questions/tagged/postgresql?tab=Week . P3.
+  https://stackoverflow.com/questions/tagged/sql?tab=Week . P3.
 
 ## Chat & messengers
 
-- **PostgreSQL community Slack** — postgresteam.slack.com (join via https://postgres-slack.org).
-  High-signal real-time talk. `[auth]` — needs invite; not auto-scannable yet. P-.
-- **PostgreSQL Discord** — public server but reading history needs membership/bot. `[auth]`. P-.
-- **#postgresql on Libera.Chat (IRC)** — public channel, but no reliable public web archive.
-  `[auth]` (effectively). P-.
 - **Public Telegram channels** — readable without login via the web preview
   `https://t.me/s/<channel>`. None pinned yet — **discover and add** the ones worth following
-  (English and Russian-language Postgres/DBMS channels). `[public]` once a channel is named. P2.
+  (English and non-English DBMS channels). `[public]` once a channel is named. P2.
 
 ---
 

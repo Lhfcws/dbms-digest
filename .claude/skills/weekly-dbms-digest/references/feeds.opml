@@ -12,32 +12,14 @@
   </head>
   <body>
     <outline text="Aggregators (English)">
-      <outline type="rss" text="Planet PostgreSQL [ok]" xmlUrl="https://planet.postgresql.org/rss20.xml"/>
-      <outline type="rss" text="Hacker News - postgres (>=20 pts) [ok]" xmlUrl="https://hnrss.org/newest?q=postgres&amp;points=20"/>
       <outline type="rss" text="Hacker News - database (>=50 pts) [ok]" xmlUrl="https://hnrss.org/newest?q=database&amp;points=50"/>
       <outline type="rss" text="Lobsters - databases tag [browser - confirmed live]" xmlUrl="https://lobste.rs/t/databases.rss"/>
     </outline>
     <outline text="Community (browser - .rss blocklisted/empty for plain fetch)">
-      <outline type="rss" text="r/PostgreSQL [browser]" xmlUrl="https://www.reddit.com/r/PostgreSQL/.rss"/>
       <outline type="rss" text="r/databasedevelopment [browser]" xmlUrl="https://www.reddit.com/r/databasedevelopment/.rss"/>
     </outline>
     <outline text="Research">
       <outline type="rss" text="arXiv cs.DB [ok]" xmlUrl="https://rss.arxiv.org/rss/cs.DB"/>
-    </outline>
-    <outline text="Russian [ru]">
-      <outline type="rss" text="Habr - PostgreSQL hub [ok]" xmlUrl="https://habr.com/ru/rss/hubs/postgresql/articles/?fl=ru"/>
-    </outline>
-    <outline text="Japanese [ja]">
-      <outline type="rss" text="Qiita - PostgreSQL tag [ok]" xmlUrl="https://qiita.com/tags/postgresql/feed"/>
-    </outline>
-    <outline text="French [fr]">
-      <outline type="rss" text="Dalibo blog [ok]" xmlUrl="https://blog.dalibo.com/feed.xml"/>
-    </outline>
-    <outline text="German [de]">
-      <!-- /de/feed/ redirects to a non-feed page (/en/de/feed/); real German feed URL unresolved.
-           Browse the /de/ blog with the browser to discover it, or rely on the EN Cybertec feed
-           (same team, mostly mirrored content). -->
-      <outline type="link" text="Cybertec (DE) [browser - discover feed; EN mirror exists]" htmlUrl="https://www.cybertec-postgresql.com/de/"/>
     </outline>
     <outline text="Chinese [zh] - browser-rendered; no clean RSS, heavy vendor-PR (filter hard)">
       <!-- Browser-confirmed 2026-06-20: modb.pro renders fine via Claude-in-Chrome.

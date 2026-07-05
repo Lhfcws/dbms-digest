@@ -33,11 +33,11 @@ import markdown
 SITE = "https://danolivo.github.io/dbms-digest"          # GitHub Pages site root
 REPO = "https://github.com/danolivo/dbms-digest"         # source repo
 FEED_TITLE = "DBMS Digest"
-SITE_TITLE = "DBMS Digest — weekly PostgreSQL & database internals roundup"
-FEED_DESC = ("A weekly, ad-free, fact-checked roundup of PostgreSQL & wider DBMS "
+SITE_TITLE = "DBMS Digest — weekly database internals roundup"
+FEED_DESC = ("A weekly, ad-free, fact-checked roundup of DBMS "
              "internals, news, and research. Monday → Sunday.")
-KEYWORDS = ("PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, "
-            "replication, MVCC, storage engine, database research, weekly digest, RSS")
+KEYWORDS = ("database internals, DBMS, SQL, query optimizer, "
+            "replication, MVCC, storage engine, database research, weekly digest, RSS, PostgreSQL, Postgres")
 MAX_ITEMS = 26  # ~half a year of weekly digests; older ones stay in the archive
 FAVICONS = ["favicon.ico", "favicon-32.png", "apple-touch-icon.png", "icon-512.png"]
 
@@ -372,10 +372,9 @@ def build_index(items: list[tuple[dt.date, Path]],
   <div class="wrap">
     <div class="banner"><img src="banner.jpg" alt="{html.escape(FEED_TITLE)} — a weekly roundup for internals developers &amp; database administrators."></div>
 
-    <h1 class="site-title">DBMS Digest — weekly PostgreSQL &amp; database internals</h1>
+    <h1 class="site-title">DBMS Digest — weekly database internals</h1>
     <p class="intro">A weekly, ad-free, fact-checked roundup of what actually happened in
-    PostgreSQL and the wider database world: new internals and features, notable
-    <code>pgsql-hackers</code>/<code>-bugs</code>/<code>-performance</code> threads, what the
+    the database world: new internals and features, what the
     community argued about, real migration war stories, techniques from commercial engines
     (SQL Server, Oracle, MySQL, OceanBase), cutting-edge research, and upcoming conferences and
     CFPs. Built for database <strong>internals developers</strong> and DBAs who want signal, not
