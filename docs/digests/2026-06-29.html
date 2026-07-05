@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DBMS Weekly — 2026-06-29 (Jun 29 – Jul 5) · DBMS Digest</title>
+  <meta name="description" content="DBMS internals digest for the week of Jun 29–Jul 5, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS, PostgreSQL, Postgres">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#0d1b2e">
+  <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-06-29.html">
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <link rel="alternate" type="application/rss+xml" title="DBMS Digest" href="../feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="DBMS Digest">
+  <meta property="og:title" content="DBMS Weekly — 2026-06-29 (Jun 29 – Jul 5)">
+  <meta property="og:description" content="DBMS internals digest for the week of Jun 29–Jul 5, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-06-29.html">
+  <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DBMS Weekly — 2026-06-29 (Jun 29 – Jul 5)">
+  <meta name="twitter:description" content="DBMS internals digest for the week of Jun 29–Jul 5, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J18B7F5NZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3J18B7F5NZ');
+  </script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-29 (Jun 29 – Jul 5)", "description": "DBMS internals digest for the week of Jun 29–Jul 5, 2026: news, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-29.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-29.html", "datePublished": "2026-06-29T12:00:00+00:00", "dateModified": "2026-06-29T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <style>
+    :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--navy); color:var(--ink);
+      font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+    a { color:var(--blue); }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 20px 64px; }
+    .wrap.wide { max-width:1060px; }
+    .banner img { width:100%; height:auto; border-radius:12px; display:block; }
+    .site-title { font-size:1.6rem; margin:26px 0 8px; color:var(--ink); }
+    .intro { color:var(--mut); margin:0 0 6px; font-size:1.02rem; line-height:1.6; }
+    .sublabel { font-size:1.05rem; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin:28px 0 4px; }
+    p.lead { color:var(--ink); margin:0 0 20px; }
+    .sub { display:inline-flex; align-items:center; gap:8px; background:var(--amber); color:var(--navy);
+      font-weight:700; text-decoration:none; padding:11px 18px; border-radius:999px; }
+    .sub:active { opacity:.85; }
+    .feedurl { display:block; margin:14px 0 0; color:var(--mut); font-size:.85rem; word-break:break-all; }
+    .feedurl code { color:var(--blue); }
+    .index-h { font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--mut);
+      border-top:1px solid var(--navy2); padding-top:24px; margin-top:36px; }
+    ul.index { list-style:none; padding:0; margin:0; }
+    ul.index li { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 10px; border-bottom:1px solid var(--navy2); padding:13px 4px; }
+    ul.index li a.entry { display:flex; gap:12px; align-items:baseline; text-decoration:none; color:var(--ink); }
+    ul.index li a.entry:hover { color:var(--amber); }
+    .date { color:var(--blue); font-variant-numeric:tabular-nums; font-weight:600; }
+    .week { color:var(--mut); }
+    .alt { color:var(--mut); font-size:.9rem; }
+    .alt a { color:var(--blue); text-decoration:none; }
+    .alt a:hover { color:var(--amber); }
+    .backlink { display:inline-block; margin:18px 0 8px; color:var(--blue); text-decoration:none; font-size:.9rem; }
+    .backlink:hover { color:var(--amber); }
+    footer { margin-top:40px; color:var(--mut); font-size:.85rem; border-top:1px solid var(--navy2); padding-top:18px; }
+    footer a { color:var(--blue); }
+    .layout { display:block; }
+    nav.toc { display:none; }
+    @media (min-width:980px) {
+      .layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:44px; align-items:start; }
+      nav.toc { display:block; position:sticky; top:24px; font-size:.85rem; }
+    }
+    nav.toc .toc-title { text-transform:uppercase; letter-spacing:.14em; font-size:.72rem; color:var(--mut); margin:0 0 10px; }
+    nav.toc ul { list-style:none; padding:0; margin:0; }
+    nav.toc li { margin:2px 0; border:0; }
+    nav.toc a { display:block; padding:4px 10px; color:var(--mut); text-decoration:none;
+      border-left:2px solid var(--navy2); line-height:1.35; }
+    nav.toc a:hover { color:var(--amber); border-left-color:var(--amber); }
+    .prose h1 { font-size:1.5rem; line-height:1.25; margin:8px 0 18px; color:var(--ink); }
+    .prose h2 { font-size:.82rem; letter-spacing:.14em; text-transform:uppercase; color:var(--amber);
+      border-top:1px solid var(--navy2); padding-top:22px; margin:34px 0 12px; scroll-margin-top:20px; }
+    .prose p { margin:.5em 0 1em; }
+    .prose ul { padding-left:1.2em; margin:.4em 0 1.2em; }
+    .prose li { margin:.5em 0; }
+    .prose li::marker { color:var(--mut); }
+    .prose a { text-decoration:none; border-bottom:1px solid transparent; }
+    .prose a:hover { color:var(--amber); border-bottom-color:var(--amber); }
+    .prose strong { color:var(--ink); }
+    .prose em { color:var(--mut); }
+    .prose code { background:var(--navy2); color:#cfe0f5; padding:1px 5px; border-radius:4px; font-size:.92em; }
+    .prose hr { border:0; border-top:1px solid var(--navy2); margin:28px 0; }
+    .prose blockquote { margin:1em 0; padding:.4em 1em; border-left:3px solid var(--amber); color:var(--mut); }
+</style>
+</head>
+<body>
+  <div class="wrap wide">
+    <a class="backlink" href="../index.html">← All digests</a>
+    <div class="layout">
+    <nav class="toc"><p class="toc-title">Sections</p>
+      <ul>
+        <li><a href="#_1">数据库内核与发布</a></li>
+        <li><a href="#_2">社区热议</a></li>
+        <li><a href="#_3">分布式数据与系统工程</a></li>
+        <li><a href="#sql-server-oracle-mysql">商业引擎（SQL Server, Oracle, MySQL, …）</a></li>
+        <li><a href="#_4">学术前沿</a></li>
+      </ul>
+    </nav>
+      <article class="prose">
+<h1 id="dbms-weekly-2026-06-29-jun-29-jul-5">DBMS Weekly — 2026-06-29 (Jun 29 – Jul 5)</h1>
+<h2 id="_1">数据库内核与发布</h2>
+<ul>
+<li><strong><a href="https://blogs.oracle.com/mysql/mysql-community-server-26-7-early-access-release">MySQL 26.7 Community Server Early Access</a></strong> — 社区版首次获得 Thread Pool 插件（此前仅企业版）；新增并行复制 APPLIER_VERSION=2 模式，改进 backlog 恢复；InnoDB undo 日志截断不再依赖本地临时文件，崩溃恢复更可靠；支持 OpenSSL 3.5+ 的混合/纯 ML-KEM 后量子密钥交换。 <em>(Oracle MySQL)</em></li>
+<li><strong><a href="https://clickhouse.com/blog/clickhouse-release-26-06">ClickHouse 26.6 发布</a></strong> — 本季度大版本：56 项新特性、79 项性能优化。亮点包括 Hypothetical Skip Index（<code>EXPLAIN WHATIF</code> 评估索引效果）、Cascading Refreshable Materialized View（<code>REFRESH DEPENDS ON</code>）、实验性 Continuous/Streaming Query（<code>SELECT ... STREAM</code>）、MPP 风格多阶段分布式执行（scatter/gather/broadcast/shuffle）、Mapbox Vector Tiles (MVT) 地理空间 SQL 生成。 <em>(ClickHouse)</em></li>
+<li><strong><a href="https://www.snowflake.com/en/blog/engineering/postgresql-19-features-beta/">Postgres 19 Beta 1 功能概览</a></strong> — Snowflake 工程团队梳理 PG19 Beta 1 核心特性：SQL/PGQ 图查询、<code>REPACK TABLE CONCURRENTLY</code> 在线表重组、并行 autovacuum、在线 checksum 开关、JIT 默认关闭、LZ4 成为默认 TOAST 压缩算法、<code>GROUP BY ALL</code> 语法糖。 <em>(Snowflake Engineering)</em></li>
+</ul>
+<h2 id="_2">社区热议</h2>
+<ul>
+<li><strong><a href="https://www.snowflake.com/en/blog/engineering/postgresql-19-features-beta/">Looking Ahead to Postgres 19</a></strong> — Snowflake 的 PG19 预览引发了跨引擎大讨论：轻量级连接 vs 高内存占用、物化视图（PG 的 REFRESH vs SQL Server Indexed View）、MariaDB/MySQL 的历史债务（无事务 DDL、无 MERGE、utf8mb3 遗留）、Oracle 的 <code>"" = NULL</code> 行为、PG 列存扩展生态（Citus、Hydra、pg_mooncake、deltax）。 <em>(Hacker News · 218 分, 19 条)</em></li>
+<li><strong><a href="https://www.databricks.com/blog/lakebase-ltap-rethinking-database-storage">Postgres data stored in Parquet on S3: LTAP architecture explained</a></strong> — Databricks 详解 Lakebase 的 LTAP（Lake Transactional/Analytical Processing）架构：基于 serverless Postgres，数据以 Parquet 格式直接存储在 S3 上，OLTP 和 OLAP 共享同一份数据，无需 CDC 或镜像。讨论集中在存储格式选择、写放大问题、以及与传统 PG 生态的兼容性。 <em>(Hacker News · 176 分)</em></li>
+<li><strong><a href="https://times.hntrends.net/story/48765639">Postgres transactions are a distributed systems superpower</a></strong> — 一篇引发热议的文章：将应用数据和 Workflow 状态放在同一个 Postgres 数据库中，利用单事务更新消除分布式工作流中的部分失败和幂等性问题。 <em>(Hacker News · Jul 3)</em></li>
+</ul>
+<h2 id="_3">分布式数据与系统工程</h2>
+<ul>
+<li><strong><a href="https://arxiv.org/abs/2606.29823">Experience Graphs: The Data Foundation for Self-Improving Agents</a></strong> — Daniel Abadi（Meta）等提出 Trellis 架构，将 AI Agent 的搜索过程建模为数据库访问模式：候选方案选择是 frontier query、相似历史会话检索是向量图遍历、训练数据提取是物化视图。类比日志如何从临时输出演变为可查询的持久状态，Experience Graph 将 Agent 推理从一次性计算变成可累积的制度资产。Meta 内部 GPU Kernel 优化器的生产数据表明跨会话复用可将目标加速比提升约 10×、token 成本降低 52%。 <em>(Abadi et al. · Meta)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.29151">CADENZA: Intent-Dependent Plan Spaces for Semantic Query Processing</a></strong> — 将自然语言意图编译为任务特定算子 DAG。不同于传统的单一执行计划空间，CADENZA 根据语义意图动态构建差异化的计划搜索空间——"打破单体优化器"的思路。同时被 VLDB 2026 和 SIGMOD 2027 接收。 <em>(Ha, Park, Han)</em> <em>[paper]</em></li>
+</ul>
+<h2 id="sql-server-oracle-mysql">商业引擎（SQL Server, Oracle, MySQL, …）</h2>
+<ul>
+<li><strong><a href="https://blogs.oracle.com/ace/monthly-product-pulse-july-2026-oracle-technical-resources">Oracle 引入 DML NOWAIT 子句</a></strong> — <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、<code>MERGE</code> 均支持 <code>NOWAIT</code>，遇到行锁时立即返回错误而非阻塞等待。Oracle 7 月技术月报还涵盖外键数据完整性深入分析、SQL 性能调优之逻辑 I/O 详解、Autonomous AI Database 的 AWS KMS 跨区域 Data Guard 正式 GA。 <em>(Oracle ACE)</em></li>
+<li><strong><a href="https://community.sap.com/t5/technology-blog-posts-by-sap/what-s-new-in-sap-hana-cloud-july-2026/ba-p/14419199">SAP HANA Cloud Q2 2026: 数据库内嵌 AI 函数</a></strong> — 新增 <code>AI_TABULAR_PREDICTION</code> 和 <code>AI_TEXT_COMPLETION</code> SQL 函数，直接在数据库引擎内调用 LLM；基于数据库元数据（表、视图、列、关系）自动生成知识图谱以驱动 AI 数据发现；Performance Class Advisor 每周自动给出实例规格建议。 <em>(SAP)</em></li>
+</ul>
+<h2 id="_4">学术前沿</h2>
+<ul>
+<li><strong><a href="https://arxiv.org/abs/2606.31808">Large Databases Need Small, Open-Weight Language Models</a></strong> — 量化后的本地开源小模型（16GB VRAM）在数据库关系算子增强任务上达到与闭源 API 同等的准确率，但成本降低 390×、延迟降低 3.8×。对 Text-to-SQL 和 NL2SQL 落地有直接指导意义。 <em>(Glenn, Samuel)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2607.02338">HNSW with Accuracy Guarantees Using Graph Spanners</a></strong> — 提出 "Certify-then-Rectify" 框架：先对 HNSW 搜索结果做统计认证，再通过图 Spanner 理论在最坏情况下精确恢复漏召回的点。为标准 HNSW 首次提供精度保证机制。已投稿 VLDB 2027。 <em>(Li, Mittal, Rana et al.)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.29532">SemJoin: Semantic Join Optimization</a></strong> — 基于 LLM Agent 的管道，在 Cluster Join 和 Classifier 两种策略间动态路由语义 Join，比 ABJ 方法 F1 提升 20–33 分且 token 成本更低。VLDB 2026 NOVAS Workshop。 <em>(Gou, Banerjee, Wang, Liu)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2607.00406">TVA: A Version-aware Temporal Graph Storage System for Real-time Analytics</a></strong> — 面向实时分析的版本感知时序图存储系统，高效管理图数据的多版本快照。已接收于 VLDB 2026。 <em>(Li, Zhao, Dong et al.)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.29968">CLIP: Lightweight Cosine-Law-Based Inverted-List Pruning for IVF</a></strong> — 利用余弦相似度的几何性质对 IVF 倒排列表做轻量剪枝，在不损失召回率的前提下加速向量检索。 <em>(Song, Lu, Zhou et al.)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.27979">DiStash: A Disaggregated Multi-Stash Transactional Key-Value Store</a></strong> — 解耦的多 Stash 事务 KV 存储，将存储层与计算层完全分离。扩展版发表于 TPC Technology Conference (VLDB 2025)。 <em>(Gao, Nguyen, Li, Ghandeharizadeh)</em> <em>[paper]</em></li>
+</ul>
+<hr />
+<p><em>14 条 · 扫描来源: 12 · 过滤营销/广告: 7</em></p>
+      </article>
+    </div>
+    <footer>
+      <a href="../index.html">← All digests</a> ·
+      <a href="../feed.xml">RSS feed</a> ·
+      <a href="https://github.com/danolivo/dbms-digest/blob/main/digests/2026-06-29.md">View source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>
