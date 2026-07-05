@@ -47,6 +47,7 @@ with this file — add confirmed feeds, drop dead ones.
 - **CIDR** — innovative/early systems ideas (e.g. Umbra). P2. https://www.cidrdb.org/
 - **FAST (USENIX)** — file and storage technologies; storage-engine, WAL, and I/O papers directly applicable to DB internals. P2. https://www.usenix.org/conference/fast
 - **DBWorld (SIGMOD)** — CfPs and community announcements; useful to spot what's hot. P3. https://dbworld.sigmod.org/browse.html
+- **ICDE** — IEEE International Conference on Data Engineering; top-tier systems+research, strong on query processing, storage, and cloud DB. P2. https://icde.org/
 - **arXiv cs.DB** — database preprints. P2. https://arxiv.org/list/cs.DB/recent
 
 ## Conferences & CFP trackers (for the Call-for-papers section)

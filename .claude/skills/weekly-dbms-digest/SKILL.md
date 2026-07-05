@@ -139,7 +139,9 @@ note so the reader knows.
 
 ### 8. Write the digest
 
-Use the exact format below. Keep each line to roughly one sentence — the value is in being scannable. Order items by importance (most significant first), lightly grouped by theme. Aim for ~10–25 items; quality over quantity. If a slow week yields little, a short honest digest beats padding.
+**Output in Chinese.** The entire digest — headings, item descriptions, footnotes, and stats line — must be written in Chinese. Only preserve the original language for: URLs, source/venue names (e.g. *VLDB 2026*), author names, specific terms, language tags (`[zh]`, `[paper]`), and the `International` section's `_(orig: …)_` original-title annotations. The headlines are still links (`**[中文标题](URL)**`).
+
+Use the exact format below. Keep each line to roughly one sentence — the value is in being scannable. Order items by importance (most significant first), lightly grouped by theme. Aim for ~30 items; quality over quantity. If a slow week yields little, a short honest digest beats padding.
 
 ## Output format
 
