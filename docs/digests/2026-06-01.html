@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07) · DBMS Digest</title>
-  <meta name="description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
-  <meta name="keywords" content="PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS">
+  <meta name="description" content="DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS, PostgreSQL, Postgres">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#0d1b2e">
   <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-06-01.html">
@@ -17,12 +17,12 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="DBMS Digest">
   <meta property="og:title" content="DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)">
-  <meta property="og:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:description" content="DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-06-01.html">
   <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)">
-  <meta name="twitter:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:description" content="DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J18B7F5NZ"></script>
@@ -32,7 +32,7 @@
     gtag('js', new Date());
     gtag('config', 'G-3J18B7F5NZ');
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)", "description": "PostgreSQL & DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-01.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-01.html", "datePublished": "2026-06-01T12:00:00+00:00", "dateModified": "2026-06-01T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-07 (week of 2026-06-01–2026-06-07)", "description": "DBMS internals digest for the week of Jun 1–Jun 7, 2026: news, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-01.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-01.html", "datePublished": "2026-06-01T12:00:00+00:00", "dateModified": "2026-06-01T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
   <style>
     :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
     * { box-sizing:border-box; }
@@ -130,8 +130,8 @@
 </ul>
 <h2 id="wider-dbms-distributed-data">Wider DBMS &amp; distributed data</h2>
 <ul>
-<li><strong><a href="https://columnar.tech/blog/introducing-databow/">databow: a Rust CLI to query any database with an ADBC driver</a></strong> — a single command-line tool that speaks to any database exposing an ADBC driver, returning Arrow columnar results without per-engine glue. <em>(columnar.tech)</em></li>
-<li><strong><a href="https://ladybugdb.com/">Ladybug: the DuckDB of graph databases</a></strong> — an embeddable, single-binary property-graph engine pitched as the local-first analytics counterpart to DuckDB for graph workloads. <em>(ladybugdb.com)</em></li>
+<li><strong><a href="https://columnar.tech/blog/introducing-databow/">databow: a Rust CLI to query any database with an ADBC driver</a></strong> — a single command-line tool that speaks to 30+ databases through one REPL, replacing per-engine CLIs (psql, mysql, snowsql) and returning Arrow columnar results without the row-by-row serialization tax of JDBC/ODBC for analytical workloads. <em>(columnar.tech)</em></li>
+<li><strong><a href="https://ladybugdb.com/">Ladybug: the DuckDB of graph databases</a></strong> — picks up where KuzuDB left off after Apple's acquisition killed its open-source development: columnar storage and vectorized execution applied to property graphs, with Cypher as the query language; MIT-licensed, inheriting research published at VLDB. <em>(ladybugdb.com)</em></li>
 </ul>
 <h2 id="migration-experience">Migration experience</h2>
 <ul>

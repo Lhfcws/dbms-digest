@@ -1,7 +1,7 @@
 {
   "name": "DBMS Digest",
   "short_name": "DBMS Digest",
-  "description": "A weekly, ad-free, fact-checked roundup of PostgreSQL & wider DBMS internals, news, and research. Monday → Sunday.",
+  "description": "A weekly, ad-free, fact-checked roundup of DBMS internals, news, and research. Monday → Sunday.",
   "start_url": "./",
   "display": "browser",
   "background_color": "#0d1b2e",

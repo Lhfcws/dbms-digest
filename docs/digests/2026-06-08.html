@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14) · DBMS Digest</title>
-  <meta name="description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
-  <meta name="keywords" content="PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS">
+  <meta name="description" content="DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS, PostgreSQL, Postgres">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#0d1b2e">
   <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-06-08.html">
@@ -17,12 +17,12 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="DBMS Digest">
   <meta property="og:title" content="DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)">
-  <meta property="og:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:description" content="DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-06-08.html">
   <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)">
-  <meta name="twitter:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:description" content="DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J18B7F5NZ"></script>
@@ -32,7 +32,7 @@
     gtag('js', new Date());
     gtag('config', 'G-3J18B7F5NZ');
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)", "description": "PostgreSQL & DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-08.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-08.html", "datePublished": "2026-06-08T12:00:00+00:00", "dateModified": "2026-06-08T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-14 (week of 2026-06-08–2026-06-14)", "description": "DBMS internals digest for the week of Jun 8–Jun 14, 2026: news, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-08.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-08.html", "datePublished": "2026-06-08T12:00:00+00:00", "dateModified": "2026-06-08T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
   <style>
     :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
     * { box-sizing:border-box; }
@@ -138,7 +138,7 @@
 <ul>
 <li><strong><a href="https://planetscale.com/blog/the-only-scalable-delete">The only scalable delete in Postgres is DROP TABLE</a></strong> — argues that under MVCC, bulk <code>DELETE</code> doesn't cheaply reclaim space (dead tuples, VACUUM, bloat), so partition-drop / <code>DROP TABLE</code> is the only delete that scales; lively HN discussion. <em>(planetscale.com)</em></li>
 <li><strong><a href="https://muratbuffalo.blogspot.com/2026/06/our-mongodb-tla-workshop.html">Our MongoDB TLA+ workshop</a></strong> — Murat Demirbas reports an order-of-magnitude better onboarding when LLM assistance removes TLA+ syntax as the barrier, letting engineers formally model real replication/storage subsystems hands-on; includes a distilled "AI-assisted TLA+ best practices" guide. <em>(muratbuffalo.blogspot.com)</em></li>
-<li><strong><a href="https://github.com/boringcollege/postgres-by-example">Postgres by Example</a></strong> — example-driven Postgres reference repo that surfaced on HN; useful as a teaching/cheat-sheet resource. <em>(github.com)</em></li>
+<li><strong><a href="https://github.com/boringcollege/postgres-by-example">Postgres by Example</a></strong> — example-driven Postgres reference repo covering practical SQL patterns, indexing strategies, and operational gotchas; surfaced on HN as a teaching/cheat-sheet resource for developers who want to go beyond the manual. <em>(github.com)</em></li>
 </ul>
 <h2 id="commercial-engines-sql-server-oracle-mysql">Commercial engines (SQL Server, Oracle, MySQL, …)</h2>
 <ul>
@@ -154,7 +154,7 @@
 <h2 id="research-cutting-edge">Research &amp; cutting edge</h2>
 <ul>
 <li><strong><a href="https://arxiv.org/abs/2606.09133">Multiversion Concurrency Control for Multiversion B-Trees</a></strong> — cMVBT redesigns the multiversion B-tree with optimistic latches for writers and latch-free range scans plus continuous GC, beating version-chain MVCC on write throughput and arbitrary-version range scans. <em>(arXiv)</em> <em>[paper]</em></li>
-<li><strong><a href="https://arxiv.org/abs/2606.09361">Bespoke-Card: synthesizing workload-specific cardinality estimators</a></strong> — generate a per-workload cardinality estimator instead of tuning one generic model. <em>(AIDB @ VLDB '26)</em> <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.09361">Bespoke-Card: synthesizing workload-specific cardinality estimators</a></strong> — generates a per-workload cardinality estimator tailored to the actual query distribution instead of tuning one generic model across diverse workloads; directly relevant to planner cost-model accuracy in any query engine. <em>(AIDB @ VLDB '26)</em> <em>[paper]</em></li>
 <li><strong><a href="https://arxiv.org/abs/2606.10270">Determination Provenance: From Ambiguity to Algebra</a></strong> — Joseph M. Hellerstein gives an algebraic treatment of determination/provenance. <em>(arXiv)</em> <em>[paper]</em></li>
 </ul>
 <hr />

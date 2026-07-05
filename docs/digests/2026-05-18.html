@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24) · DBMS Digest</title>
-  <meta name="description" content="PostgreSQL &amp; DBMS internals digest for the week of May 18–May 24, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
-  <meta name="keywords" content="PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS">
+  <meta name="description" content="DBMS internals digest for the week of May 18–May 24, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS, PostgreSQL, Postgres">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#0d1b2e">
   <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-05-18.html">
@@ -17,12 +17,12 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="DBMS Digest">
   <meta property="og:title" content="DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24)">
-  <meta property="og:description" content="PostgreSQL &amp; DBMS internals digest for the week of May 18–May 24, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:description" content="DBMS internals digest for the week of May 18–May 24, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-05-18.html">
   <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24)">
-  <meta name="twitter:description" content="PostgreSQL &amp; DBMS internals digest for the week of May 18–May 24, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:description" content="DBMS internals digest for the week of May 18–May 24, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J18B7F5NZ"></script>
@@ -32,7 +32,7 @@
     gtag('js', new Date());
     gtag('config', 'G-3J18B7F5NZ');
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24)", "description": "PostgreSQL & DBMS internals digest for the week of May 18–May 24, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-05-18.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-05-18.html", "datePublished": "2026-05-18T12:00:00+00:00", "dateModified": "2026-05-18T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-05-24 (week of 2026-05-18–2026-05-24)", "description": "DBMS internals digest for the week of May 18–May 24, 2026: news, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-05-18.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-05-18.html", "datePublished": "2026-05-18T12:00:00+00:00", "dateModified": "2026-05-18T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
   <style>
     :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
     * { box-sizing:border-box; }
@@ -136,8 +136,8 @@
 <li>AI is fully optional; with no <code>--ai</code> flag there are zero extra dependencies and no external calls</li>
 </ul>
 </li>
-<li><strong><a href="https://www.postgresql.org/about/news/barman-3180-released-3303/">Barman 3.18.0</a></strong> — new release of EDB's backup-and-recovery manager for PostgreSQL. <em>(EDB · postgresql.org)</em></li>
-<li><strong><a href="https://www.postgresql.org/about/news/release-check_pgactivity-210-3302/">check_pgactivity 2.10</a></strong> — new release of the Nagios/monitoring plugin for PostgreSQL. <em>(check_pgactivity project · postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/barman-3180-released-3303/">Barman 3.18.0</a></strong> — adds experimental block-level incremental cloud backups (S3/Azure/GCS via a local staging area, restore not yet available), a new <code>local-to-cloud</code> backup method that unifies the <code>barman-cloud-*</code> scripts under the main CLI, a <code>barman cloud-wal-archive</code> command supporting six compression algorithms, and a fix for a WAL-archiving file-handle leak that could exhaust open files on long-running services. <em>(EDB · postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/release-check_pgactivity-210-3302/">check_pgactivity 2.10</a></strong> — the Nagios-compatible PostgreSQL monitoring plugin adds two new service checks (<code>unused_indexes</code> and <code>relation_size</code>), extends <code>invalid_indexes</code> detection to TOAST indexes, sets the application name in <code>pg_stat_activity</code> for easier tracing of monitoring queries, and excludes partitioned tables from <code>last_analyze</code> checks. <em>(check_pgactivity project · postgresql.org)</em></li>
 </ul>
 <h2 id="wider-dbms-distributed-data">Wider DBMS &amp; distributed data</h2>
 <ul>

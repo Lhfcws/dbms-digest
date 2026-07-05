@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition · DBMS Digest</title>
-  <meta name="description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
-  <meta name="keywords" content="PostgreSQL, Postgres, database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS">
+  <meta name="description" content="DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="keywords" content="database internals, DBMS, SQL, query optimizer, replication, MVCC, storage engine, database research, weekly digest, RSS, PostgreSQL, Postgres">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#0d1b2e">
   <link rel="canonical" href="https://danolivo.github.io/dbms-digest/digests/2026-06-22.html">
@@ -17,12 +17,12 @@
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="DBMS Digest">
   <meta property="og:title" content="DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition">
-  <meta property="og:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta property="og:description" content="DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta property="og:url" content="https://danolivo.github.io/dbms-digest/digests/2026-06-22.html">
   <meta property="og:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition">
-  <meta name="twitter:description" content="PostgreSQL &amp; DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.">
+  <meta name="twitter:description" content="DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, community pulse, commercial engines, international sources, research, and conferences.">
   <meta name="twitter:image" content="https://danolivo.github.io/dbms-digest/banner.jpg">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J18B7F5NZ"></script>
@@ -32,7 +32,7 @@
     gtag('js', new Date());
     gtag('config', 'G-3J18B7F5NZ');
   </script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition", "description": "PostgreSQL & DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, mailing lists, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-22.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-22.html", "datePublished": "2026-06-22T12:00:00+00:00", "dateModified": "2026-06-22T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28) · fable edition", "description": "DBMS internals digest for the week of Jun 22–Jun 28, 2026: news, community pulse, commercial engines, international sources, research, and conferences.", "inLanguage": "en", "url": "https://danolivo.github.io/dbms-digest/digests/2026-06-22.html", "mainEntityOfPage": "https://danolivo.github.io/dbms-digest/digests/2026-06-22.html", "datePublished": "2026-06-22T12:00:00+00:00", "dateModified": "2026-06-22T12:00:00+00:00", "author": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "publisher": {"@type": "Organization", "name": "DBMS Digest", "logo": {"@type": "ImageObject", "url": "https://danolivo.github.io/dbms-digest/icon-512.png"}}, "image": "https://danolivo.github.io/dbms-digest/banner.jpg"}</script>
   <style>
     :root { --navy:#0d1b2e; --navy2:#13243a; --blue:#5a8bd4; --amber:#f5a623; --ink:#e7eef7; --mut:#8aa0bd; }
     * { box-sizing:border-box; }
@@ -146,8 +146,8 @@ CommitFest (collection phase, Jul 1–31) accumulates next cycle's patches.</em>
 </ul>
 <h3 id="ecosystem-releases">Ecosystem releases</h3>
 <ul>
-<li><strong><a href="https://www.postgresql.org/about/news/pgtt-v45-has-been-released-3330/">pgtt v4.5</a></strong> — Global Temporary Tables extension update (Jun 28), timely while the in-core GTT patch sits in the CommitFest. <em>(HexaCluster)</em></li>
-<li><strong><a href="https://www.postgresql.org/about/news/ivorysql-54-released-based-on-postgresql-184-with-ai-skills-3323/">IvorySQL 5.4</a></strong> — the Oracle-compatible fork rebases onto PostgreSQL 18.4. <em>(Highgo)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/pgtt-v45-has-been-released-3330/">pgtt v4.5</a></strong> — Global Temporary Tables extension update (Jun 28): adds PostgreSQL 19 support, <code>CREATE INDEX CONCURRENTLY</code> on GTTs, and a fix for a dump/restore OID corruption bug in <code>pg_global_temp_tables</code>. <em>(HexaCluster)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/ivorysql-54-released-based-on-postgresql-184-with-ai-skills-3323/">IvorySQL 5.4</a></strong> — the Oracle-compatible fork rebases onto PostgreSQL 18.4, picking up the PG18 async-I/O and planner improvements; worth watching as a measure of how quickly downstream forks absorb upstream internals changes. <em>(Highgo)</em></li>
 <li><strong><a href="https://www.postgresql.org/about/news/new-postgres-language-server-postgres-lsp-3322/">postgres-lsp</a></strong> — Language Server for SQL/PL-pgSQL on tree-sitter-postgres; announced Jun 21, one day pre-window but too useful to skip. <em>(Gavin M. Roy)</em> <code>[just pre-window]</code></li>
 </ul>
 <h2 id="postgresql-mailing-lists-whats-being-designed">PostgreSQL mailing lists (what's being designed)</h2>
@@ -165,14 +165,14 @@ CommitFest (collection phase, Jul 1–31) accumulates next cycle's patches.</em>
 <h2 id="wider-dbms-distributed-data">Wider DBMS &amp; distributed data</h2>
 <ul>
 <li><strong><a href="https://github.com/ClickHouse/ClickHouse/releases/tag/v26.6.1.1193-stable">ClickHouse 26.6</a></strong> (Jun 25) — <strong>continuous queries</strong> over MergeTree (periodic snapshot reads as a first step toward streaming), <strong><code>EXPLAIN WHATIF</code></strong> (estimate a hypothetical skip index's benefit before building it), and experimental <strong>multi-stage distributed execution</strong> with scatter/broadcast/gather/shuffle exchanges — distributed hash joins and shuffle aggregation on the way. <code>[release notes verified on GitHub]</code></li>
-<li><strong><a href="https://github.com/timescale/timescaledb/releases/tag/2.28.1">TimescaleDB 2.28.1</a></strong> (Jun 23) — maintenance release of the Postgres time-series extension.</li>
+<li><strong><a href="https://github.com/timescale/timescaledb/releases/tag/2.28.1">TimescaleDB 2.28.1</a></strong> (Jun 23) — maintenance release of the Postgres time-series extension with hypertable chunking improvements and compression bug fixes.</li>
 <li><strong><a href="https://news.ycombinator.com/item?id=48702848">WAL-RUS: a Rust rewrite of WAL-G</a></strong> — from-scratch Rust reimplementation of the WAL-G backup tool; 132 pts on HN. <em>(ClickHouse blog)</em></li>
 </ul>
 <h2 id="research-cutting-edge">Research &amp; cutting edge</h2>
 <ul>
-<li><strong><a href="https://arxiv.org/abs/2606.27979">DiStash: A Disaggregated Multi-Stash Transactional Key-Value Store</a></strong> — transactional KV designed for compute/storage-disaggregated hardware. <em>[paper]</em></li>
-<li><strong><a href="https://arxiv.org/abs/2606.27051">BtrLog: Low-Latency Logging for Cloud Database Systems</a></strong> — cutting tail latency on the cloud-DB write path; WAL-adjacent reading. <em>[paper]</em></li>
-<li><strong><a href="https://arxiv.org/abs/2606.25409">CV-Rules: Serializability Verification of Concurrency Control Protocols</a></strong> — machine-checkable serializability arguments for CC protocols. <em>[paper · missed by the original edition]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.27979">DiStash: A Disaggregated Multi-Stash Transactional Key-Value Store</a></strong> — transactional KV designed for compute/storage-disaggregated hardware, using multiple hash-stash structures co-located per compute node to reduce cross-node coordination during transactions. <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.27051">BtrLog: Low-Latency Logging for Cloud Database Systems</a></strong> — cutting tail latency on the cloud-DB write path by decoupling the log append from durability; directly relevant to anyone building or tuning persistent write paths. <em>[paper]</em></li>
+<li><strong><a href="https://arxiv.org/abs/2606.25409">CV-Rules: Serializability Verification of Concurrency Control Protocols</a></strong> — machine-checkable serializability arguments for CC protocols, using formal methods to prove isolation guarantees hold under concurrency. <em>[paper · missed by the original edition]</em></li>
 <li><strong><a href="https://arxiv.org/abs/2606.26385">Query Cost Model Calibration in Confidential Virtual Machines</a></strong> — planner cost constants drift inside TEEs/CVMs; directly relevant to anyone running Postgres in confidential compute. <em>[paper · missed by the original edition]</em></li>
 </ul>
 <h2 id="community-pulse">Community pulse</h2>
@@ -185,7 +185,7 @@ CommitFest (collection phase, Jul 1–31) accumulates next cycle's patches.</em>
 <ul>
 <li><strong><a href="https://habr.com/ru/companies/nexign/articles/1052014/">Range types in PostgreSQL: speeding up queries</a></strong> <code>[ru]</code> — range types + GiST for cheap overlap/containment queries. <em>(Nexign · Habr)</em></li>
 <li><strong><a href="https://habr.com/ru/articles/1051692/">Lessons about deadlocks, again</a></strong> <code>[ru]</code> — a production deadlock post-mortem; lock ordering strikes again. <em>(Habr)</em></li>
-<li><strong><a href="https://habr.com/ru/articles/1051760/">From ETL to CDC: real-time analytics on PostgreSQL, Kafka and ClickHouse</a></strong> <code>[ru]</code> — architecture walk-through, part 1. <em>(Habr)</em></li>
+<li><strong><a href="https://habr.com/ru/articles/1051760/">From ETL to CDC: real-time analytics on PostgreSQL, Kafka and ClickHouse</a></strong> <code>[ru]</code> — walks through design decisions for a real-time analytics pipeline: when to use batch ETL vs. streaming CDC, the PostgreSQL logical-decoding → Kafka → ClickHouse data path, and the latency/consistency trade-offs at each hop; architecture walk-through, part 1. <em>(Habr)</em></li>
 <li><strong><a href="https://habr.com/ru/articles/1051910/">Greengage major upgrades with pg_upgrade/ggupgrade</a></strong> and <strong><a href="https://habr.com/ru/articles/1051918/">ggrebalance, part 1: Shrink</a></strong> <code>[ru]</code> — MPP-on-Postgres operational internals from the Greenplum lineage. <em>(Greengage)</em></li>
 <li><strong><a href="https://blog.dalibo.com/2026/06/25/plugin-pgbackrest.html">pgBackRest plugin for CloudNativePG</a></strong> <code>[fr]</code> — wiring pgBackRest into CNPG as a backup plugin, with a companion piece on <a href="https://blog.dalibo.com/2026/06/25/pgbackrest_communautaire.html">pgBackRest as a community answer</a>. <em>(Dalibo)</em></li>
 </ul>

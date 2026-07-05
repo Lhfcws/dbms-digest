@@ -5,7 +5,7 @@
     <link>https://danolivo.github.io/dbms-digest/</link>
     <description>A weekly, ad-free, fact-checked roundup of DBMS internals, news, and research. Monday → Sunday.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 05 Jul 2026 09:52:23 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jul 2026 09:57:15 +0000</lastBuildDate>
     <atom:link href="https://danolivo.github.io/dbms-digest/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DBMS Weekly — 2026-06-22 (week of 2026-06-22–2026-06-28)</title>
@@ -41,9 +41,9 @@ patches. Full network scan via the in-browser path — see the source note at th
 </ul>
 <h3>Ecosystem releases (from the official news archive)</h3>
 <ul>
-<li><strong><a href="https://www.postgresql.org/about/news/pgtt-v45-has-been-released-3330/">pgtt v4.5</a></strong> — the Global Temporary Tables extension ships a new release, mirroring the ongoing in-core GTT patch discussion. <em>(HexaCluster)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/pgtt-v45-has-been-released-3330/">pgtt v4.5</a></strong> — the Global Temporary Tables extension adds PostgreSQL 19 support and <code>CREATE INDEX CONCURRENTLY</code> on global temporary tables, and fixes a dump/restore OID corruption bug in <code>pg_global_temp_tables</code> that could leave stale references after a restore. <em>(HexaCluster)</em></li>
 <li><strong><a href="https://www.postgresql.org/about/news/new-postgres-language-server-postgres-lsp-3322/">postgres-lsp</a></strong> — a Language Server (SQL + PL/pgSQL) built on tree-sitter-postgres; announced Jun 21, just before the window, but a notable new tool. <em>(Gavin M. Roy)</em> <code>[just pre-window]</code></li>
-<li><strong><a href="https://www.postgresql.org/about/news/ivorysql-54-released-based-on-postgresql-184-with-ai-skills-3323/">IvorySQL 5.4</a></strong> — the Oracle-compatible Postgres fork rebases on PostgreSQL 18.4. <em>(Highgo)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/ivorysql-54-released-based-on-postgresql-184-with-ai-skills-3323/">IvorySQL 5.4</a></strong> — the Oracle-compatible Postgres fork rebases on PostgreSQL 18.4, picking up the PG18 async-I/O and planner improvements; worth watching as a measure of how quickly downstream forks absorb upstream internals changes. <em>(Highgo)</em></li>
 </ul>
 <h2>PostgreSQL mailing lists (what's being designed)</h2>
 <p>Scanned the full Jun 22–28 <a href="https://www.postgresql.org/list/pgsql-hackers/2026-06/">pgsql-hackers archive</a>. Most active design threads:</p>
@@ -83,7 +83,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <ul>
 <li><strong><a href="https://habr.com/ru/companies/nexign/articles/1052014/">Range data type in PostgreSQL: speeding up queries</a></strong> <code>[ru]</code> — using range types with GiST to make overlap/containment queries cheap. <em>(Nexign · Habr)</em> <em>(orig: «Диапазонный тип данных в PostgreSQL: ускоряем запросы»)</em></li>
 <li><strong><a href="https://habr.com/ru/articles/1051692/">Lessons about deadlocks, again</a></strong> <code>[ru]</code> — a production deadlock post-mortem and how lock-ordering bit again. <em>(Habr)</em> <em>(orig: «И вновь уроки про deadlock-и»)</em></li>
-<li><strong><a href="https://habr.com/ru/articles/1051760/">From ETL to CDC: choosing a real-time analytics architecture on PostgreSQL, Kafka and ClickHouse (Part 1)</a></strong> <code>[ru]</code> — a change-data-capture pipeline design walk-through. <em>(Habr)</em></li>
+<li><strong><a href="https://habr.com/ru/articles/1051760/">From ETL to CDC: choosing a real-time analytics architecture on PostgreSQL, Kafka and ClickHouse (Part 1)</a></strong> <code>[ru]</code> — walks through design decisions for a real-time analytics pipeline: when to use batch ETL vs. streaming CDC, the PostgreSQL logical-decoding → Kafka → ClickHouse data path, and the latency/consistency trade-offs at each hop. <em>(Habr)</em></li>
 <li><strong><a href="https://blog.dalibo.com/2026/06/25/plugin-pgbackrest.html">pgBackRest plugin for CloudNativePG</a></strong> <code>[fr]</code> — wiring pgBackRest in as a CNPG backup plugin; alongside a companion post, <a href="https://blog.dalibo.com/2026/06/25/pgbackrest_communautaire.html">"pgBackRest: une réponse communautaire"</a>. <em>(Dalibo)</em></li>
 </ul>
 <h2>Conferences &amp; CFP</h2>
@@ -142,7 +142,7 @@ patches. Full network scan via the in-browser path — see the source note at th
 <h2>Wider DBMS &amp; distributed data</h2>
 <ul>
 <li><strong><a href="https://www.youtube.com/watch?v=U3ssJlQAJuA">Why we built Azure HorizonDB for PostgreSQL</a></strong> — Dingding Lu (POSETTE) on Microsoft's new cloud-native, Postgres-compatible engine that decouples storage to keep latency predictable under spiky traffic and scale reads without external bolt-ons; a useful look at how a major vendor is re-architecting Postgres for the cloud. <em>(Microsoft · posetteconf.com)</em></li>
-<li><strong><a href="https://www.youtube.com/watch?v=9COYCHn1MuU">pg_lake: Postgres as a lakehouse</a></strong> — Marco Slot (POSETTE) on the extension approach to making Postgres a competent analytics/lakehouse front-end (Iceberg/object-storage interaction) rather than bolting on a separate warehouse. <em>(posetteconf.com)</em></li>
+<li><strong><a href="https://www.youtube.com/watch?v=9COYCHn1MuU">pg_lake: Postgres as a lakehouse</a></strong> — Marco Slot (POSETTE) on the open-source extension set that lets you query raw data lake files, create and manage Iceberg tables, and run analytical queries with DuckDB "de-embedded" as the query engine beneath Postgres, all via SQL commands; integrates with <code>pg_incremental</code> for CDC/ELT patterns. Now at <code>github.com/Snowflake-Labs/pg_lake</code>. <em>(posetteconf.com)</em></li>
 </ul>
 <h2>Migration experience</h2>
 <ul>
@@ -236,8 +236,8 @@ patches. Full network scan via the in-browser path — see the source note at th
 </ul>
 <h2>Wider DBMS &amp; distributed data</h2>
 <ul>
-<li><strong><a href="https://columnar.tech/blog/introducing-databow/">databow: a Rust CLI to query any database with an ADBC driver</a></strong> — a single command-line tool that speaks to any database exposing an ADBC driver, returning Arrow columnar results without per-engine glue. <em>(columnar.tech)</em></li>
-<li><strong><a href="https://ladybugdb.com/">Ladybug: the DuckDB of graph databases</a></strong> — an embeddable, single-binary property-graph engine pitched as the local-first analytics counterpart to DuckDB for graph workloads. <em>(ladybugdb.com)</em></li>
+<li><strong><a href="https://columnar.tech/blog/introducing-databow/">databow: a Rust CLI to query any database with an ADBC driver</a></strong> — a single command-line tool that speaks to 30+ databases through one REPL, replacing per-engine CLIs (psql, mysql, snowsql) and returning Arrow columnar results without the row-by-row serialization tax of JDBC/ODBC for analytical workloads. <em>(columnar.tech)</em></li>
+<li><strong><a href="https://ladybugdb.com/">Ladybug: the DuckDB of graph databases</a></strong> — picks up where KuzuDB left off after Apple's acquisition killed its open-source development: columnar storage and vectorized execution applied to property graphs, with Cypher as the query language; MIT-licensed, inheriting research published at VLDB. <em>(ladybugdb.com)</em></li>
 </ul>
 <h2>Migration experience</h2>
 <ul>
@@ -330,8 +330,8 @@ patches. Full network scan via the in-browser path — see the source note at th
 <li>AI is fully optional; with no <code>--ai</code> flag there are zero extra dependencies and no external calls</li>
 </ul>
 </li>
-<li><strong><a href="https://www.postgresql.org/about/news/barman-3180-released-3303/">Barman 3.18.0</a></strong> — new release of EDB's backup-and-recovery manager for PostgreSQL. <em>(EDB · postgresql.org)</em></li>
-<li><strong><a href="https://www.postgresql.org/about/news/release-check_pgactivity-210-3302/">check_pgactivity 2.10</a></strong> — new release of the Nagios/monitoring plugin for PostgreSQL. <em>(check_pgactivity project · postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/barman-3180-released-3303/">Barman 3.18.0</a></strong> — adds experimental block-level incremental cloud backups (S3/Azure/GCS via a local staging area, restore not yet available), a new <code>local-to-cloud</code> backup method that unifies the <code>barman-cloud-*</code> scripts under the main CLI, a <code>barman cloud-wal-archive</code> command supporting six compression algorithms, and a fix for a WAL-archiving file-handle leak that could exhaust open files on long-running services. <em>(EDB · postgresql.org)</em></li>
+<li><strong><a href="https://www.postgresql.org/about/news/release-check_pgactivity-210-3302/">check_pgactivity 2.10</a></strong> — the Nagios-compatible PostgreSQL monitoring plugin adds two new service checks (<code>unused_indexes</code> and <code>relation_size</code>), extends <code>invalid_indexes</code> detection to TOAST indexes, sets the application name in <code>pg_stat_activity</code> for easier tracing of monitoring queries, and excludes partitioned tables from <code>last_analyze</code> checks. <em>(check_pgactivity project · postgresql.org)</em></li>
 </ul>
 <h2>Wider DBMS &amp; distributed data</h2>
 <ul>
