@@ -92,7 +92,7 @@ This is the core value of the digest. **Exclude** an item (or flag it clearly if
 
 **Commercial-engine techniques.** Actively look for genuinely new techniques and inventions in SQL Server, Oracle, MySQL, DB2, and similar — new optimizer/storage/replication capabilities, internals write-ups, and engineering deep-dives. Apply the same anti-marketing filter: a real technique or measured result, not a "what's new in version N" sales sheet.
 
-**Release posts get a changes summary.** When an item is the release of an extension or utility (e.g. "pg_kpart 1.0", "powa-archivist 5.1.2", "pgBackRest 2.x"), don't just say "new release" — read the changelog/release notes and summarise *what actually changed*: the headline new features, notable fixes, breaking changes, and the minimum/target server version. This is the one place to relax the strict one-line limit — a release item may use a short sub-bullet list of the key changes when that's clearer. Skip pure version-bump posts with no meaningful changes, and still drop release posts whose "changes" are entirely marketing.
+**Release posts get a changes summary.** When an item is the release of a database engine, extension, or utility (e.g. "ClickHouse 26.6", "QuestDB 8.2"), don't just say "new release" — read the changelog/release notes and summarise *what actually changed*: the headline new features, notable fixes, breaking changes, and the minimum/target server version. This is the one place to relax the strict one-line limit — a release item may use a short sub-bullet list of the key changes when that's clearer. Skip pure version-bump posts with no meaningful changes, and still drop release posts whose "changes" are entirely marketing.
 
 **Migration experience.** Actively look for real-world migration experience reports — moving to/from Postgres, Oracle→Postgres, MySQL→Postgres, cross-cloud, version upgrades at scale — where the author shares what actually happened (pitfalls, downtime, data discrepancies, tooling, rollback). These are high-value; prioritise them. Generic "why you should migrate to our product" posts are marketing — cut them.
 
@@ -138,7 +138,7 @@ Use the exact format below. Keep each line to roughly one sentence — the value
 - ...
 
 ## Call for papers
-- **[<Conference> — <location>, <dates>](CFP URL)** — CFP closes <deadline>. *(community)*
+- **[<Conference> — <location>, <dates>](CFP URL)** — CFP closes <deadline>. *(research)*
 - ...
 
 ## Upcoming events
@@ -166,7 +166,7 @@ Notes on the format:
       - experimental multi-stage distributed execution with shuffle joins
   ```
 - **Community pulse items** link to the discussion thread and tag the platform plus a rough engagement signal, e.g. `*(Hacker News · 240 pts, 180 comments)*` or `*(r/databasedevelopment · 95 upvotes)*`. Keep to the 3–8 most-discussed threads, deduped against the rest of the digest.
-- **Call-for-papers items** appear only in the digest for the week the CFP **opened** (announcement in-window) — never repeated across weeks; tagged *(community)* or *(research)*.
+- **Call-for-papers items** appear only in the digest for the week the CFP **opened** (announcement in-window) — never repeated across weeks; tagged *(research)*.
 - **Upcoming-events items** appear once, ~a month ahead — the event starts 24–30 days after this digest's week ends — then a short sub-list of 1–3 internals-relevant talks (speaker + why-it-matters), or a note that the program is TBA.
 - **Blank line before every list.** A bullet list must be preceded by a blank line (CommonMark). If a section opens with an intro sentence (e.g. the Call-for-papers "open as of …" line), leave a blank line before the first `-`, or the whole block renders as one paragraph instead of a list.
 - **Never name what was filtered.** The stats line carries only *counts* (items dropped as marketing/ads, and optionally an out-of-window count). Never list the specific blogs, companies, people, or products you excluded — no "incl. X, Y …" enumerations and no "excluded: …" notes anywhere in the digest. (Listing the sources you *scanned* is fine — that's coverage stats.)
